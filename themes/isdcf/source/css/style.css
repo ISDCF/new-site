@@ -208,10 +208,30 @@ a:hover {
   margin-top: 16px;
 }
 
+.post__content h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 32px 0 12px;
+}
+
 .post__content h2 {
   font-size: 1.4rem;
   font-weight: 700;
   margin: 32px 0 12px;
+}
+
+.post__content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+
+.post__content h4,
+.post__content h5,
+.post__content h6 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 20px 0 8px;
 }
 
 .post__content img {
