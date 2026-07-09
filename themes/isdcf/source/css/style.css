@@ -11,7 +11,7 @@
   --color-border: #e6e8eb;
   --color-accent: #2455e0;
   --color-accent-hover: #1b3fb8;
-  --color-heading: #b0ffda;
+  --color-heading: #183829;
 
   --max-width: 800px;
   --header-height: 64px;
@@ -26,7 +26,7 @@
     --color-border: #2a2d34;
     --color-accent: #6f92ff;
     --color-accent-hover: #8fa8ff;
-    --color-heading: #90ee90;
+    --color-heading: #b0ffda;
   }
 }
 
