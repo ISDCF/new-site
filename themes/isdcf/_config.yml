@@ -10,5 +10,9 @@ favico: /img/favicon_IS.svg
 menu:
   About: /about/
   Intersociety:
-    Leadership: /is/Leadership
-
+    Leadership: /is/Leadership/
+  Meetings:
+    Notes: /meetings/notes/
+    Logistics: /meetings/logistics/
+    Calendar: /meetings/calendar/
+  DCNC and Registry: https://registry-page.isdcf.com/
