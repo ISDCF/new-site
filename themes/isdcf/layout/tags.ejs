@@ -1,0 +1,11 @@
+<header class="page-intro">
+  <h1 class="page-intro__title">Tags</h1>
+</header>
+
+<div class="term-cloud">
+  <% site.tags.sort('name').each(function(tag){ %>
+    <a class="term-cloud__item" href="<%- url_for(tag.path) %>">
+      #<%= tag.name %> <span class="term-cloud__count"><%= tag.length %></span>
+    </a>
+  <% }) %>
+</div>

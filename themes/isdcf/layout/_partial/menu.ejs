@@ -1,0 +1,49 @@
+<%
+  // Renders theme.menu (a plain object, arbitrarily nested) as Bootstrap
+  // nav / dropdown markup. `items` is the object to render at this level;
+  // `level` is 0 for the top navbar row, >0 for a nested dropdown-submenu.
+  var level = typeof level === 'undefined' ? 0 : level;
+
+  function hasActiveDescendant(obj) {
+    return Object.keys(obj).some(function (key) {
+      var value = obj[key];
+      return typeof value === 'string' ? is_current(value) : hasActiveDescendant(value);
+    });
+  }
+
+  function slugify(key) {
+    return key.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+%>
+<% Object.keys(items).forEach(function (key) { %>
+  <% var value = items[key]; %>
+  <% if (typeof value === 'string') { %>
+    <% if (level === 0) { %>
+      <li class="nav-item">
+        <a class="nav-link<%- is_current(value) ? ' active' : '' %>" href="<%- url_for(value) %>"><%= key %></a>
+      </li>
+    <% } else { %>
+      <a class="dropdown-item<%- is_current(value) ? ' active' : '' %>" href="<%- url_for(value) %>"><%= key %></a>
+    <% } %>
+  <% } else { %>
+    <% var id = 'nav-dropdown-' + level + '-' + slugify(key); %>
+    <% var active = hasActiveDescendant(value); %>
+    <% if (level === 0) { %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle<%- active ? ' active' : '' %>" href="#" id="<%- id %>" role="button"
+          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= key %></a>
+        <div class="dropdown-menu" aria-labelledby="<%- id %>">
+          <%- partial('_partial/menu', { items: value, level: level + 1 }) %>
+        </div>
+      </li>
+    <% } else { %>
+      <div class="dropdown-submenu">
+        <a class="dropdown-item dropdown-toggle<%- active ? ' active' : '' %>" href="#" id="<%- id %>"
+          aria-haspopup="true" aria-expanded="false"><%= key %></a>
+        <div class="dropdown-menu" aria-labelledby="<%- id %>">
+          <%- partial('_partial/menu', { items: value, level: level + 1 }) %>
+        </div>
+      </div>
+    <% } %>
+  <% } %>
+<% }) %>

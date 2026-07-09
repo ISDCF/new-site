@@ -1,0 +1,11 @@
+<header class="page-intro">
+  <h1 class="page-intro__title">Categories</h1>
+</header>
+
+<div class="term-cloud">
+  <% site.categories.sort('name').each(function(cat){ %>
+    <a class="term-cloud__item" href="<%- url_for(cat.path) %>">
+      <%= cat.name %> <span class="term-cloud__count"><%= cat.length %></span>
+    </a>
+  <% }) %>
+</div>

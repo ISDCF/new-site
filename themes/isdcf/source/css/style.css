@@ -1,0 +1,384 @@
+/* ISDCF theme — modern minimal */
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-bg: #ffffff;
+  --color-bg-alt: #f6f7f9;
+  --color-text: #16181d;
+  --color-text-muted: #626a76;
+  --color-border: #e6e8eb;
+  --color-accent: #2455e0;
+  --color-accent-hover: #1b3fb8;
+
+  --max-width: 800px;
+  --header-height: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #14161a;
+    --color-bg-alt: #1b1e24;
+    --color-text: #eceef1;
+    --color-text-muted: #9aa2ad;
+    --color-border: #2a2d34;
+    --color-accent: #6f92ff;
+    --color-accent-hover: #8fa8ff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header / navbar */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-bg);
+}
+
+.site-header .navbar {
+  min-height: var(--header-height);
+  background: var(--color-bg) !important;
+  border-color: var(--color-border) !important;
+}
+
+.site-header .nav-link {
+  color: var(--color-text-muted) !important;
+  font-weight: 500;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link.active,
+.site-header .dropdown-item:hover,
+.site-header .dropdown-item.active {
+  color: var(--color-text) !important;
+}
+
+.site-header .dropdown-menu {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+.site-header .dropdown-item {
+  color: var(--color-text-muted);
+}
+
+/* Nested dropdown ("hierarchical") menus. Bootstrap 4's dropdown plugin
+   only opens/closes the top level, so submenus are flown out with CSS
+   and toggled via the .show class from main.js. */
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+
+.dropdown-submenu > .dropdown-toggle::after {
+  transform: rotate(-90deg);
+}
+
+.dropdown-submenu.show > .dropdown-menu {
+  display: block;
+}
+
+/* Main content */
+
+.site-main {
+  min-height: calc(100vh - var(--header-height) - 120px);
+  padding: 48px 0 64px;
+}
+
+.page-intro {
+  margin-bottom: 40px;
+}
+
+.page-intro__title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.page-intro__subtitle {
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Post list / cards */
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.post--card {
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.post-list > .post--card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.post__header {
+  margin-bottom: 12px;
+}
+
+.post--card .post__title {
+  font-size: 1.4rem;
+  margin: 0 0 6px;
+}
+
+.post--full .post__title {
+  font-size: 2rem;
+  margin: 0 0 6px;
+}
+
+.post__title a {
+  color: var(--color-text);
+}
+
+.post__title a:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.post__meta {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.post__categories a {
+  color: var(--color-text-muted);
+}
+
+.post__content {
+  margin-top: 16px;
+}
+
+.post__content img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.post__content pre {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 16px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.post__content code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-bg-alt);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.post__content pre code {
+  background: none;
+  padding: 0;
+}
+
+.post__more {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+.post__tags {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.post__tags a {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+.post__tags a:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.post__pager {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.95rem;
+}
+
+/* Archive */
+
+.archive-year {
+  font-size: 1.1rem;
+  margin: 32px 0 12px;
+}
+
+.archive-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.archive-item {
+  display: flex;
+  gap: 16px;
+  color: var(--color-text);
+}
+
+.archive-item time {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.archive-item:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+/* Tag / category cloud */
+
+.term-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.term-cloud__item {
+  color: var(--color-text);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+}
+
+.term-cloud__item:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.term-cloud__count {
+  color: var(--color-text-muted);
+  font-size: 0.85em;
+}
+
+/* Pagination */
+
+.pager {
+  margin-top: 48px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+}
+
+.pager a {
+  font-weight: 500;
+}
+
+.pager .page-number.current {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.pager .space {
+  display: none;
+}
+
+/* Footer */
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer__inner {
+  padding: 24px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Mobile */
+
+@media (max-width: 991.98px) {
+  .dropdown-submenu > .dropdown-menu {
+    position: static;
+    float: none;
+    margin-left: 1rem;
+  }
+
+  .dropdown-submenu > .dropdown-toggle::after {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .post--full .post__title {
+    font-size: 1.6rem;
+  }
+
+  .post__pager {
+    flex-direction: column;
+  }
+}

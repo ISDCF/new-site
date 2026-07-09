@@ -1,0 +1,14 @@
+# ISDCF theme configuration
+
+# Short brand text shown in the top-left of the navbar (site.title is still
+# used for <title> tags and the homepage heading).
+logo: ISDCF
+logo_url: /img/ISDCF-logo.png
+favico: /img/favicon_IS.svg
+
+# Top navbar links, in display order.
+menu:
+  About: /about/
+  Intersociety:
+    Leadership: /is/Leadership
+
