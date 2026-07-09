@@ -1,6 +1,7 @@
 ---
 title: Technical Docs
 layout: page
+alias: technical-docs/index.html
 ---
 
 *All these documents are to be used at your own risk, strictly voluntary, not to be used for implementing products, no warranty expressed or implied. These are provided for convenience only.*

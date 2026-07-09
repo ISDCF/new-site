@@ -1,6 +1,7 @@
 ---
 title: Meeting Notes
 layout: page
+alias: meeting-notes/index.html
 ---
 
 - [December 3, 2025](/meetings/notes/MeetingNotes20251203vPOSTED.pdf)

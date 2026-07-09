@@ -1,6 +1,7 @@
 ---
 title: Meeting Logistics
 layout: page
+alias: logistics/index.html
 ---
 
 ## Directions to the Pickford Center / Academy on Vine in Hollywood
