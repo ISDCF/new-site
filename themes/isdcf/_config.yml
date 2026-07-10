@@ -16,11 +16,13 @@ menu:
     Membership: /intersociety/membership/
     Ken Mason Award: /intersociety/ken-mason-award/
   Meetings:
-    Notes: /meetings/notes/
-    Logistics: /meetings/logistics/
-    Calendar: /meetings/calendar/
+    Notes: /events/notes/
+    Logistics: /events/logistics/
+    Calendar: /events/calendar/
+    Cinema Systems Summit 2025: /events/cinema-systems-summit/2025/
   Technical Details:
-    Documents: /tech/documents/
-    Expiring Certs: /tech/expiring-certs/
-    SMPTE Standards: /tech/standards/
+    Documents: /resources/documents/
+    Expiring Certs: /resources/expiring-certs/
+    SMPTE Standards: /resources/standards/
+    Other Resources: /resources/other/
   DCNC and Registry: https://registry-page.isdcf.com/

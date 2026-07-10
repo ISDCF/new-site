@@ -164,7 +164,7 @@ At the end of December about 600 CPLs were remastered for the weekend. There are
 
 There is a lot of misinformation floating around. There are multiple problems that are being blamed to this one issue. This problem has to do with SMPTE standard 430-2 step 9 of the validation rules.:
 
-![Figure](/tech/expiring-certs/CERT-Figure1.jpg)
+![Figure](/resources/expiring-certs/CERT-Figure1.jpg)
 
 A question was raised why does this not include the packing list? One provider said that packing lists are generated on-demand. It was suggested that DCI expand the change to include packing lists. The packing list does not seem to be the problem for the near-term issue, but should be included in next revision.
 
@@ -174,4 +174,4 @@ The elephant in the room is the existence of playback equipment that may not be 
 
 The ISDCF test content fails for playback due to this issue on some systems. It is perfect test content to verify that your system plays content that should play.
 
-![Figure](/tech/expiring-certs/CERT-Figure2.jpg)
+![Figure](/resources/expiring-certs/CERT-Figure2.jpg)

@@ -11,6 +11,6 @@ Meetings are open to members and guests in good standing. All attendees must be 
 
 <iframe src="https://calendar.google.com/calendar/embed?height=250&amp;wkst=1&amp;ctz=America%2FLos_Angeles&amp;mode=AGENDA&amp;showCalendars=0&amp;showTabs=0&amp;showPrint=0&amp;src=bjRlNGRkcW8wM2VnbG83ZXE0dTZzMnVjaTZnZnNjNmpAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%23e4c441" width="600" height="250" frameborder="0" scrolling="no"></iframe>
 
-[Directions to meetings](/meetings/logistics)
+[Directions to meetings](/events/logistics)
 
 Questions? Email [info@isdcf.com](mailto:info@isdcf.com).
