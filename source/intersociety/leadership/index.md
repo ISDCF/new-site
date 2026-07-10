@@ -6,7 +6,7 @@ alias: intersociety-leadership/index.html
 
 ## InterSociety Mission Statement
 
-#### The Inter-Society for the Enhancement of Cinema Presentation, Inc. promotes interactive dialogue and information exchange between cinema-related entities with the goal of resolving issues affecting the overall cinema presentation.
+*The Inter-Society for the Enhancement of Cinema Presentation, Inc. promotes interactive dialogue and information exchange between cinema-related entities with the goal of resolving issues affecting the overall cinema presentation.*
 
 ### Leadership
 
@@ -16,7 +16,7 @@ The Inter-Society's Board of Directors are volunteers from across the entertainm
 
 ##### President
 
-![Steve LLamb](/intersociety/leadership/Steve-LLamb.jpg)
+<img class="headshot" src="./Steve-LLamb.jpg" alt="Steve LLamb">
 
 **Steve LLamb**
 *VP, Technology Standards and Solutions*
@@ -25,7 +25,7 @@ The Inter-Society's Board of Directors are volunteers from across the entertainm
 
 ##### Vice President
 
-![Reiner Doetzkies](/intersociety/leadership/Reiner-Doetzkies.jpeg)
+<img class="headshot" src="./Reiner-Doetzkies.jpeg" alt="Reiner Doetzkies">
 
 **Reiner Doetzkies**
 *Director, Cinema Business and Technology Development*
@@ -34,7 +34,7 @@ The Inter-Society's Board of Directors are volunteers from across the entertainm
 
 ##### Secretary/Treasurer
 
-![Mark Waterson](/intersociety/leadership/Mark-Waterson.jpg)
+<img class="headshot" src="./Mark-Waterson.jpg" alt="Mark Waterson">
 
 **Mark Waterson**
 *Executive Vice President, Qube Wire*
@@ -43,48 +43,48 @@ The Inter-Society's Board of Directors are volunteers from across the entertainm
 
 ##### Executive Director (Interim)
 
-![Pierre-Anthony Lemieux](/intersociety/leadership/Pierre-Anthony-Lemieux.jpg)
+<img class="headshot" src="./Pierre-Anthony-Lemieux.jpg" alt="Pierre-Anthony Lemieux">
 
 **Pierre-Anthony Lemieux**
 *Chairman (Interim) | ISDCF*
 
 #### Board Members
 
-![Mark Collins](/intersociety/leadership/Mark-Collins.jpeg)
+<img class="headshot" src="./Mark-Collins.jpeg" alt="Mark Collins">
 
 **Mark Collins**
 *Independent*
 *(Term 2025-2027)*
 
-![David Deelo](/intersociety/leadership/David-Deelo.png)
+<img class="headshot" src="./David-Deelo.png" alt="David Deelo">
 
 **David Deelo**
 *Executive Director*
 *Sony Pictures Technology Development*
 *(Term 2026-2028)*
 
-![Kirk Griffin](/intersociety/leadership/generic-head.png)
+<img class="headshot" src="./generic-head.png" alt="Kirk Griffin">
 
 **Kirk Griffin**
 *Director of Presentation Technologies*
 *Harkins Theaters*
 *(Term 2025-2027)*
 
-![Andrew Poulain](/intersociety/leadership/Andrew-Poulain.png)
+<img class="headshot" src="./Andrew-Poulain.png" alt="Andrew Poulain">
 
 **Andrew Poulain**
 *Director, Cinema & Group Entertainment Product Management*
 *Dolby Laboratories*
 *(Term 2026-2028)*
 
-![Mike Radford](/intersociety/leadership/generic-head.png)
+<img class="headshot" src="./generic-head.png" alt="Mike Radford">
 
 **Mike Radford**
 *VP Technology Solutions*
 *Walt Disney Studios*
 *(Term 2025-2027)*
 
-![Sean Romano](/intersociety/leadership/Sean-Romano.jpg)
+<img class="headshot" src="./Sean-Romano.jpg" alt="Sean Romano">
 
 **Sean Romano**
 *SVP of Operations*
@@ -93,7 +93,7 @@ The Inter-Society's Board of Directors are volunteers from across the entertainm
 
 #### Executive Director Emeritus In Memoriam
 
-[![Jerry Pierce](/intersociety/leadership/Jerry-Pierce.jpg)](/intersociety/jerry-pierce/)
+<a href="/intersociety/jerry-pierce/"><img class="headshot" src="./Jerry-Pierce.jpg" alt="Jerry Pierce"></a>
 
 **Jerry Pierce**
 *Chairman | ISDCF*
