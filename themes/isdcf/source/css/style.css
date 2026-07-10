@@ -251,7 +251,11 @@ a:hover {
   height: 110px;
   padding: 12px;
   margin-bottom: 8px;
-  background: var(--color-bg);
+  /* Fixed light background (not var(--color-bg)): most sponsor logos are
+     authored with a light backdrop in mind (opaque white artwork, or dark
+     linework on transparency), so they lose contrast or vanish if this box
+     flips to the dark theme's background color. */
+  background: #818181;
   border: 1px solid var(--color-border);
   border-radius: 8px;
 }
