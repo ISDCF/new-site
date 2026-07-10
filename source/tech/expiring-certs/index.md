@@ -12,231 +12,141 @@ The following was provided by Deluxe to help understand the issue. The core issu
 
 ### 1. What has happened, and what is the background information?
 
-<p style="margin-left: 1.0em">a. On Dec 31, 2023, 00:00:00:00 GMT, the certificate chain (tdc-bur-user01) that Deluxe was using to sign CPLs within their global mastering toolset Cipher (v1) expired.</p>
-
-<p style="margin-left: 1.5em">i. This is not an abnormal situation, as certificates for Mastering systems expire anywhere from 5-15 years, depending on the system manufacturer’s business requirements (there are no standards or requirements on certificate validity length).</p>
-
-<p style="margin-left: 1.5em">ii. Deluxe had already been prepping for this date by the creation of another certificate chain with their Cipher (v2) environment, which was deployed globally over the month of December 2023 to replace the original Mastering system and soon to be expiring signer certificate. During the month of December, many titles had CPLs created in both systems.</p>
-
-<p style="margin-left: 1.0em">b. Some playback servers deployed in exhibition validated this certificate at time of starting playback (after Dec 31, 2023, 00:00:00:00 GMT), and then failed due to the certificate within the CPL’s signature being expired.</p>
-
-<p style="margin-left: 1.5em">i. This was based on a calculation of the Not After date/time stamp with the CPL’s signature certificate chain when compared to Current Date/Time on the server (see 7 below for more details why this occurred).</p>
-
-<p style="margin-left: 1.0em">c. Deluxe re-created CPLs within Cipher (v2) with the new cert to get through the holiday week for first run content and limited repertory content, based on customer and exhibitor feedback as needed (see 11.a below for more details).</p>
-
-<p style="margin-left: 1.5em">i. This is not sustainable long term as per the amount of CPLs this could potential affect (see 2.b.iii below).</p>
+- a. On Dec 31, 2023, 00:00:00:00 GMT, the certificate chain (tdc-bur-user01) that Deluxe was using to sign CPLs within their global mastering toolset Cipher (v1) expired.
+    - i. This is not an abnormal situation, as certificates for Mastering systems expire anywhere from 5-15 years, depending on the system manufacturer’s business requirements (there are no standards or requirements on certificate validity length).
+    - ii. Deluxe had already been prepping for this date by the creation of another certificate chain with their Cipher (v2) environment, which was deployed globally over the month of December 2023 to replace the original Mastering system and soon to be expiring signer certificate. During the month of December, many titles had CPLs created in both systems.
+- b. Some playback servers deployed in exhibition validated this certificate at time of starting playback (after Dec 31, 2023, 00:00:00:00 GMT), and then failed due to the certificate within the CPL’s signature being expired.
+    - i. This was based on a calculation of the Not After date/time stamp with the CPL’s signature certificate chain when compared to Current Date/Time on the server (see 7 below for more details why this occurred).
+- c. Deluxe re-created CPLs within Cipher (v2) with the new cert to get through the holiday week for first run content and limited repertory content, based on customer and exhibitor feedback as needed (see 11.a below for more details).
+    - i. This is not sustainable long term as per the amount of CPLs this could potential affect (see 2.b.iii below).
 
 ### 2. What content was/is affected?
 
-<p style="margin-left: 1.0em">a. This ONLY affected SMPTE encrypted CPL content.</p>
-
-<p style="margin-left: 1.0em">b. This particular instance was limited to Deluxe created content.</p>
-
-<p style="margin-left: 1.5em">i. Deluxe has been using this specific certificate globally since late 2015 on all CPLs created in house in Cipher (v1).</p>
-
-<p style="margin-left: 1.5em">ii. It is estimated that approximately 450,000 CPLs have been created that match this certificate and the SMPTE format.</p>
-
-<p style="margin-left: 1.0em">c. <em>ALSO – Any other SMPTE encrypted content that was created and signed by an “expired” certificate,</em> <em>created by ANYONE</em>.</p>
+- a. This ONLY affected SMPTE encrypted CPL content.
+- b. This particular instance was limited to Deluxe created content.
+    - i. Deluxe has been using this specific certificate globally since late 2015 on all CPLs created in house in Cipher (v1).
+    - ii. It is estimated that approximately 450,000 CPLs have been created that match this certificate and the SMPTE format.
+- c. <em>ALSO – Any other SMPTE encrypted content that was created and signed by an “expired” certificate,</em> <em>created by ANYONE</em>.
 
 ### 3. Is there content created that is NOT affected?
 
-<p style="margin-left: 1.0em">a. It has been determined that this does not affect (on any certificate):</p>
-
-<p style="margin-left: 1.5em">i. IOP content.</p>
-
-<p style="margin-left: 1.5em">ii. Unencrypted content (regardless of IOP/SMPTE format).</p>
-
-<p style="margin-left: 1.0em">b. Other SMPTE content:</p>
-
-<p style="margin-left: 1.5em">i. Created by Deluxe on currently “non-expired” certificates.</p>
-
-<p style="margin-left: 1.5em">ii. Created by other vendors on currently “non-expired” certificates.</p>
+- a. It has been determined that this does not affect (on any certificate):
+    - i. IOP content.
+    - ii. Unencrypted content (regardless of IOP/SMPTE format).
+- b. Other SMPTE content:
+    - i. Created by Deluxe on currently “non-expired” certificates.
+    - ii. Created by other vendors on currently “non-expired” certificates.
 
 ### 4. Why is IOP and Unencrypted content not affected (as noted in 3.a above)?
 
-<p style="margin-left: 1.0em">a. Signature (and thereby signature certificates) is optional on both IOP and unencrypted CPLs and therefore ignored by validation steps (see 7 below) at playback time on servers.</p>
+- a. Signature (and thereby signature certificates) is optional on both IOP and unencrypted CPLs and therefore ignored by validation steps (see 7 below) at playback time on servers.
 
 ### 5. What systems are affected?
 
-<p style="margin-left: 1.0em">a. The following playback systems determined to fail on playback due to this validation:</p>
-
-<p style="margin-left: 1.5em">i. Christie</p>
-
-<p style="margin-left: 2.0em">a. IMB-S2</p>
-
-<p style="margin-left: 2.0em">b. IMB-S3</p>
-
-<p style="margin-left: 2.0em">c. Dolby E3LH</p>
-
-<p style="margin-left: 2.0em"><em>d. </em><em>NOTE: This was only on the above systems that were not updated as per </em><em>6.a.ii</em><em> below</em></p>
-
-<p style="margin-left: 1.5em">ii. GDC</p>
-
-<p style="margin-left: 2.0em">a. All GDC Digital Cinema server models updated with a DCI compliant firmware were affected.</p>
-
-<p style="margin-left: 1.5em">iii. Sony</p>
-
-<p style="margin-left: 2.0em">a. Media Block XCT-M10 (SRX-R515 and SRX-R815 projectors)</p>
-
-<p style="margin-left: 2.0em">b. LMT-300 (SRX-R320 projectors)</p>
-
-<p style="margin-left: 2.0em"><em>c. </em>LMT-200 (SRX-R220 projectors)</p>
-
-<p style="margin-left: 1.5em">iv. Dolby CP850 ONLY in dual KDM auditorium (used with IAB/ATMOS content)</p>
-
-<p style="margin-left: 2.0em">a. IMS3000</p>
-
-<p style="margin-left: 2.0em">b. This does not affect:</p>
-
-<p style="margin-left: 2.5em">i. Dolby CP850s in single KDM auditorium for IAB/ATMOS content</p>
-
-<p style="margin-left: 2.5em">ii. Dolby CP850s for non-IAB/ATMOS content</p>
-
-<p style="margin-left: 2.0em"><em>c. </em><em>Note: This only affects the playback of the IAB/ATMOS track. The rest of the content still plays as normal, with MainSound playing, if available, in some cases.</em></p>
+- a. The following playback systems determined to fail on playback due to this validation:
+    - i. Christie
+        - a. IMB-S2
+        - b. IMB-S3
+        - c. Dolby E3LH
+        - <em>d. </em><em>NOTE: This was only on the above systems that were not updated as per </em><em>6.a.ii</em><em> below</em>
+    - ii. GDC
+        - a. All GDC Digital Cinema server models updated with a DCI compliant firmware were affected.
+    - iii. Sony
+        - a. Media Block XCT-M10 (SRX-R515 and SRX-R815 projectors)
+        - b. LMT-300 (SRX-R320 projectors)
+        - <em>c. </em>LMT-200 (SRX-R220 projectors)
+    - iv. Dolby CP850 ONLY in dual KDM auditorium (used with IAB/ATMOS content)
+        - a. IMS3000
+        - b. This does not affect:
+            - i. Dolby CP850s in single KDM auditorium for IAB/ATMOS content
+            - ii. Dolby CP850s for non-IAB/ATMOS content
+        - <em>c. </em><em>Note: This only affects the playback of the IAB/ATMOS track. The rest of the content still plays as normal, with MainSound playing, if available, in some cases.</em>
 
 ### 6. Wouldn’t this have happened before?
 
-<p style="margin-left: 1.0em">a. Actually… This did recently occur in June of 2023 when another certificate used by both Deluxe and Disney expired.</p>
-
-<p style="margin-left: 1.5em">i. At that time, reports of issues were limited to only occurring on Christie servers (as noted in 5.a.i above), and there were no further reports of incidents.</p>
-
-<p style="margin-left: 1.5em">ii. As such, Christie issued a fix that was widely deployed around Oct 2023 (see 10.a below).</p>
-
-<p style="margin-left: 1.0em">b. This has potentially occurred many times over the past years when other certificates for other Mastering systems have expired. It’s assumed that this was not as widely noticed in prior instances, perhaps due to the prevalence of IOP content.</p>
+- a. Actually… This did recently occur in June of 2023 when another certificate used by both Deluxe and Disney expired.
+    - i. At that time, reports of issues were limited to only occurring on Christie servers (as noted in 5.a.i above), and there were no further reports of incidents.
+    - ii. As such, Christie issued a fix that was widely deployed around Oct 2023 (see 10.a below).
+- b. This has potentially occurred many times over the past years when other certificates for other Mastering systems have expired. It’s assumed that this was not as widely noticed in prior instances, perhaps due to the prevalence of IOP content.
 
 ### 7. Are there more details on this validation step(s) that was failing?
 
-<p style="margin-left: 1.0em">a. At the time of playback, servers are required to validate the signature (which is required for SMPTE encrypted content).</p>
-
-<p style="margin-left: 1.5em">i. The rules for validation of the certificate within the CPL signature are defined as per SMPTE ST 430-2, section 6.2.</p>
-
-<p style="margin-left: 2.0em">a. Step (9) of this section states:<br/><em>If the validation context includes a desired time, check that the desired time is within the validity dates. Informative Note: In most cases the desired time is the current time, but a different time might be used to examine historical or future information. Implementations that do not need to know the current time in order to otherwise comply with their requirements typically will not include a desired time in the validation context and therefore will skip this step.</em></p>
-
-<p style="margin-left: 1.5em">ii. DCI DCSS version 1.4.3 (published version as of Dec 31, 2023) also stated in section 9.4.3.5 functions of the Security Manager:</p>
-
-<p style="margin-left: 2.0em">a. Step (4.c) stated:<br/><em>The CPL meets the two validation requirements defined in Section 5.2.1. of SMPTE 430-5 D-Cinema Operations – Security Log Event Class and Constraints for D-Cinema.</em></p>
-
-<p style="margin-left: 1.0em">b. The ambiguity of mentioning current time in SMPTE ST 430-2 as “in most cases” was interpreted as the desired time to validate against, according to the affected server manufacturers. There is often room for interpretation in the standards and specifications such as this, but this was effectively invalidating any SMPTE encrypted CPLs with an expired certificate within the signature, which was not widely expected by the industry.</p>
+- a. At the time of playback, servers are required to validate the signature (which is required for SMPTE encrypted content).
+    - i. The rules for validation of the certificate within the CPL signature are defined as per SMPTE ST 430-2, section 6.2.
+        - a. Step (9) of this section states:<br/><em>If the validation context includes a desired time, check that the desired time is within the validity dates. Informative Note: In most cases the desired time is the current time, but a different time might be used to examine historical or future information. Implementations that do not need to know the current time in order to otherwise comply with their requirements typically will not include a desired time in the validation context and therefore will skip this step.</em>
+    - ii. DCI DCSS version 1.4.3 (published version as of Dec 31, 2023) also stated in section 9.4.3.5 functions of the Security Manager:
+        - a. Step (4.c) stated:<br/><em>The CPL meets the two validation requirements defined in Section 5.2.1. of SMPTE 430-5 D-Cinema Operations – Security Log Event Class and Constraints for D-Cinema.</em>
+- b. The ambiguity of mentioning current time in SMPTE ST 430-2 as “in most cases” was interpreted as the desired time to validate against, according to the affected server manufacturers. There is often room for interpretation in the standards and specifications such as this, but this was effectively invalidating any SMPTE encrypted CPLs with an expired certificate within the signature, which was not widely expected by the industry.
 
 ### 8. Is there a way to clarify this validation, and/or do we need to update standards?
 
-<p style="margin-left: 1.0em">a. DCI has issued a revision of the DCSS (version 1.4.4 published Jan 3, 2024) that updates step (4.c) of section 9.4.3.5 to:<br/><em>The CPL meets the two validation requirements defined in Section 5.2.1. of SMPTE 430-5 “D-Cinema Operations – Security Log Event Class and Constraints for D-Cinema” with the following caveat: When performing Step 9 of Section 6.2 in SMPTE ST 430-2, the desired time of the validation context shall be equal to the IssueDate field of the target CPL (and not the current time).</em> This behavior permits the continued playback of a CPL after the expiration of its signing certificate, but ensures that the signing took place during the certificate’s validity period.</p>
-
-<p style="margin-left: 1.0em">b. SMPTE ST 430-2 should not need an update with the clarification added by DCI.</p>
-
-<p style="margin-left: 1.5em">i. This will likely be discussed more within SMPTE 27C Document Maintenance group at the next revision of ST 430-2.</p>
-
-<p style="margin-left: 1.0em">c. This will likely be good enough clarification for both current and future implementations.</p>
+- a. DCI has issued a revision of the DCSS (version 1.4.4 published Jan 3, 2024) that updates step (4.c) of section 9.4.3.5 to:<br/><em>The CPL meets the two validation requirements defined in Section 5.2.1. of SMPTE 430-5 “D-Cinema Operations – Security Log Event Class and Constraints for D-Cinema” with the following caveat: When performing Step 9 of Section 6.2 in SMPTE ST 430-2, the desired time of the validation context shall be equal to the IssueDate field of the target CPL (and not the current time).</em> This behavior permits the continued playback of a CPL after the expiration of its signing certificate, but ensures that the signing took place during the certificate’s validity period.
+- b. SMPTE ST 430-2 should not need an update with the clarification added by DCI.
+    - i. This will likely be discussed more within SMPTE 27C Document Maintenance group at the next revision of ST 430-2.
+- c. This will likely be good enough clarification for both current and future implementations.
 
 ### 9. Why is this an issue, shouldn’t CPLs “expire”?
 
-<p style="margin-left: 1.0em">a. Technical reasons aside, many content owners and vendors have never expected to have to recreate CPLs after a certain amount of time, and certainly never expected CPLs to “expire”. There is little desire to recreate CPLs every 5-15 years for the same content. Most title databases within vendors and studios track versions by CPL UUID/CTT, as a fixed non-changing element.</p>
-
-<p style="margin-left: 1.5em">i. This is aside from usual CPL migration for standards updates, such as moving from IOP to SMPTE, and/or adding additional SMPTE CPL metadata, and/or new validation on the mastering side due to implementation issues.</p>
-
-<p style="margin-left: 1.0em">b. Every DCP vendor has CPL signer certificates that will eventually expire. Some sooner than others, and many have already expired.</p>
-
-<p style="margin-left: 1.0em">c. There are quite of number repertory titles that are constantly and frequently in the field, even more so since the pandemic. Much of that content has been mastered on mastering systems which have had certs expire <em>many years ago</em>.</p>
-
-<p style="margin-left: 1.0em">d. No one disagrees that a CPL’s certificate shouldn’t be validated based on the time of creation (IssueDate), as clarified by DCI (as per 8.a above), but this would not “invalidate” a CPL. This would allow all repertory content already mastered to continue to play without incident in the future, as long as the certificate was valid at the time of the creation of the CPL.</p>
-
-<p style="margin-left: 1.0em">e. The footprint of CPLs and affected systems has the potential to (and appears to have already) reach all territories and markets, this will only increase with time.</p>
+- a. Technical reasons aside, many content owners and vendors have never expected to have to recreate CPLs after a certain amount of time, and certainly never expected CPLs to “expire”. There is little desire to recreate CPLs every 5-15 years for the same content. Most title databases within vendors and studios track versions by CPL UUID/CTT, as a fixed non-changing element.
+    - i. This is aside from usual CPL migration for standards updates, such as moving from IOP to SMPTE, and/or adding additional SMPTE CPL metadata, and/or new validation on the mastering side due to implementation issues.
+- b. Every DCP vendor has CPL signer certificates that will eventually expire. Some sooner than others, and many have already expired.
+- c. There are quite of number repertory titles that are constantly and frequently in the field, even more so since the pandemic. Much of that content has been mastered on mastering systems which have had certs expire <em>many years ago</em>.
+- d. No one disagrees that a CPL’s certificate shouldn’t be validated based on the time of creation (IssueDate), as clarified by DCI (as per 8.a above), but this would not “invalidate” a CPL. This would allow all repertory content already mastered to continue to play without incident in the future, as long as the certificate was valid at the time of the creation of the CPL.
+- e. The footprint of CPLs and affected systems has the potential to (and appears to have already) reach all territories and markets, this will only increase with time.
 
 ### 10. Are there fixes by the server manufacturers? What can exhibition do?
 
-<p style="margin-left: 1.0em">a. Christie</p>
-
-<p style="margin-left: 1.5em">i. There is already an update available (as per 6.a.ii above). All help desks should be aware of this.</p>
-
-<p style="margin-left: 2.0em">a. Download at: <a href="https://myftp.christiedigital.com/?u=YQpr&amp;p=3PqT">https://myftp.christiedigital.com/?u=YQpr&amp;p=3PqT</a></p>
-
-<p style="margin-left: 2.0em">b. Software versions that resolve the issue:</p>
-
-<p style="margin-left: 2.5em">i. IMB-S2: v1.8.11(4)</p>
-
-<p style="margin-left: 2.5em">ii. IMB-S3: CineLife 2.7.1-12</p>
-
-<p style="margin-left: 2.5em">iii. Dolby E3LH: CineLife 2.3.60-3</p>
-
-<p style="margin-left: 1.0em">b. GDC</p>
-
-<p style="margin-left: 1.5em">i. Software versions that resolve the issue:</p>
-
-<p style="margin-left: 2.0em">· 8.01-build312</p>
-
-<p style="margin-left: 2.0em">· 9.0-build521</p>
-
-<p style="margin-left: 2.0em">· 10.0-build135</p>
-
-<p style="margin-left: 2.0em">· 17.3-build45</p>
-
-<p style="margin-left: 2.0em">· 17.5-build40</p>
-
-<p style="margin-left: 2.0em">· 19.0-build34</p>
-
-<p style="margin-left: 1.5em">ii. It is suggested to reach out to your integrator and/or the manufacturer as needed.</p>
-
-<p style="margin-left: 1.0em">c. Sony</p>
-
-<p style="margin-left: 1.5em">i. Sony is aware and has been working on a potential software update for its servers</p>
-
-<p style="margin-left: 1.5em">ii. XCT-M10 media block software and release notes can be downloaded at: <a href="https://checkpoint.url-protection.com/v1/url?o=https%3A//app.cimediacloud.com/r/xDNWuhwjMENB&amp;g=NTViYjkzMTE0M2NkMWJjYQ==&amp;h=ZjNiYTJlZjZhMzY1YWZhZGZlODZmNTMyNWY4ZWI0YzZmZjFjNDZjYTY3YmUxZTNmMWQ4MmJiNzY4ZWI3Yzg4Mg==&amp;p=YzJ1OmRlbHV4ZW1lZGlhaW5jOmM6bzo1OTkxODJiMDYxYzI2ZmFhNTQwZTdhYzdmMDlkMmQwNDp2MTpoOlQ=">https://app.cimediacloud.com/r/xDNWuhwjMENB</a></p>
-
-<p style="margin-left: 1.5em">iii. LMT-300 media block software and release notes can be downloaded at: <a href="https://checkpoint.url-protection.com/v1/url?o=https%3A//app.cimediacloud.com/r/dBkJwg4LCAhI&amp;g=Mjc0NjViM2Y1YmU5ZmVmZQ==&amp;h=MDIwMDA2NDkwM2YyMDcxNGRiOTBiNWFlZmM3ZTYyODg3ZmJmMWUwOGQ1MjhiZWQwMTlkNzUxZTVjMGNlOGQ1Yw==&amp;p=YzJ1OmRlbHV4ZW1lZGlhaW5jOmM6bzo4YWQ0OGQ1MTRlMzc1Njc2ZjU2OGNmNjY2Y2QwZTYyZTp2MTpoOlQ=">https://app.cimediacloud.com/r/dBkJwg4LCAhI</a></p>
-
-<p style="margin-left: 1.5em">iv. It is suggested to reach out to your integrator and/or the manufacturer as needed.</p>
-
-<p style="margin-left: 1.0em">d. Dolby</p>
-
-<p style="margin-left: 1.5em">i. Aware and currently looking in the situation.</p>
-
-<p style="margin-left: 1.5em">ii. It is suggested to reach out to your integrator and/or the manufacturer as needed.</p>
-
-<p style="margin-left: 1.5em">iii. There is a software version available to address the issue:</p>
-
-<p style="margin-left: 2.0em">· CP850 SW v2.3.2.5 release notes:<a href="https://dolby.box.com/s/g7o3pczxg3zsxanjn0ymbbmy99b8iai7"> https://dolby.box.com/s/g7o3pczxg3zsxanjn0ymbbmy99b8iai7</a></p>
-
-<p style="margin-left: 2.0em">· CP850 SW v2.3.2.5 software: Contact Dolby for access to the software by emailing <a href="mailto:CinemaSupport@dolby.com">CinemaSupport@dolby.com</a></p>
+- a. Christie
+    - i. There is already an update available (as per 6.a.ii above). All help desks should be aware of this.
+        - a. Download at: <a href="https://myftp.christiedigital.com/?u=YQpr&amp;p=3PqT">https://myftp.christiedigital.com/?u=YQpr&amp;p=3PqT</a>
+        - b. Software versions that resolve the issue:
+            - i. IMB-S2: v1.8.11(4)
+            - ii. IMB-S3: CineLife 2.7.1-12
+            - iii. Dolby E3LH: CineLife 2.3.60-3
+- b. GDC
+    - i. Software versions that resolve the issue:
+        - · 8.01-build312
+        - · 9.0-build521
+        - · 10.0-build135
+        - · 17.3-build45
+        - · 17.5-build40
+        - · 19.0-build34
+    - ii. It is suggested to reach out to your integrator and/or the manufacturer as needed.
+- c. Sony
+    - i. Sony is aware and has been working on a potential software update for its servers
+    - ii. XCT-M10 media block software and release notes can be downloaded at: <a href="https://checkpoint.url-protection.com/v1/url?o=https%3A//app.cimediacloud.com/r/xDNWuhwjMENB&amp;g=NTViYjkzMTE0M2NkMWJjYQ==&amp;h=ZjNiYTJlZjZhMzY1YWZhZGZlODZmNTMyNWY4ZWI0YzZmZjFjNDZjYTY3YmUxZTNmMWQ4MmJiNzY4ZWI3Yzg4Mg==&amp;p=YzJ1OmRlbHV4ZW1lZGlhaW5jOmM6bzo1OTkxODJiMDYxYzI2ZmFhNTQwZTdhYzdmMDlkMmQwNDp2MTpoOlQ=">https://app.cimediacloud.com/r/xDNWuhwjMENB</a>
+    - iii. LMT-300 media block software and release notes can be downloaded at: <a href="https://checkpoint.url-protection.com/v1/url?o=https%3A//app.cimediacloud.com/r/dBkJwg4LCAhI&amp;g=Mjc0NjViM2Y1YmU5ZmVmZQ==&amp;h=MDIwMDA2NDkwM2YyMDcxNGRiOTBiNWFlZmM3ZTYyODg3ZmJmMWUwOGQ1MjhiZWQwMTlkNzUxZTVjMGNlOGQ1Yw==&amp;p=YzJ1OmRlbHV4ZW1lZGlhaW5jOmM6bzo4YWQ0OGQ1MTRlMzc1Njc2ZjU2OGNmNjY2Y2QwZTYyZTp2MTpoOlQ=">https://app.cimediacloud.com/r/dBkJwg4LCAhI</a>
+    - iv. It is suggested to reach out to your integrator and/or the manufacturer as needed.
+- d. Dolby
+    - i. Aware and currently looking in the situation.
+    - ii. It is suggested to reach out to your integrator and/or the manufacturer as needed.
+    - iii. There is a software version available to address the issue:
+        - · CP850 SW v2.3.2.5 release notes:<a href="https://dolby.box.com/s/g7o3pczxg3zsxanjn0ymbbmy99b8iai7"> https://dolby.box.com/s/g7o3pczxg3zsxanjn0ymbbmy99b8iai7</a>
+        - · CP850 SW v2.3.2.5 software: Contact Dolby for access to the software by emailing <a href="mailto:CinemaSupport@dolby.com">CinemaSupport@dolby.com</a>
 
 ### 11. Are there any workarounds?
 
-<p style="margin-left: 1.0em">a. A new CPL may be generated with a currently valid certificate in the signature.</p>
-
-<p style="margin-left: 1.5em">i. This may either be done as Version File (VF) package of just CPL/PKL/AssetMap or full OV package with original MXF track files.</p>
-
-<p style="margin-left: 1.5em">ii. This DOES NOT require new MXF track files or a re-encode of the essence files (no “re-packaging” or “re-mastering”).</p>
-
-<p style="margin-left: 1.5em">iii. This works on all systems currently affected.</p>
-
-<p style="margin-left: 1.5em">iv. This is not expected to be a long-term “fix”, only to be done in some cases as needed until future software updates are published by server manufacturers.</p>
-
-<p style="margin-left: 1.0em">b. FOR GDC ONLY:</p>
-
-<p style="margin-left: 1.5em">i. A new SMPTE KDM may be generated without ContentAuthenticator</p>
-
-<p style="margin-left: 2.0em">a. This will bypass the stoppage of playback during the additional signature certificate validation as noted in the ISDCF Doc 5 – Guideline for SMPTE KDMs and Certificates Behaviors (available at: <a href="https://files.isdcf.com/papers/ISDCF-Doc5-kdm-certs.pdf">https://files.isdcf.com/papers/ISDCF-Doc5-kdm-certs.pdf</a>), item “CPL Signature” in section (3.2):<br/>– <em>In the case of a KDM with the ContentAuthenticator element present, a failed CPL Signature failure shall always result in playback rejection. In such case, the certificates used in the CPL signing chain shall successfully pass the applicable validation rules identified in Annex A. Failure to pass identified certificate validation rules shall result in playback rejection as well.<br/>– In the case of a KDM without ContentAuthenticator, a CPL signature shall NOT result in playback rejection. It is recommended that a CPL signature failure be logged in such cases, while the playback shall NOT be forbidden because of this failure. In such case, the certificates used in the CPL signing chain do not have to pass the applicable validation rules identified in Annex A. Failure to pass identified certificate validation rules shall NOT result in playback rejection.</em></p>
-
-<p style="margin-left: 1.5em">ii. This has been vetted by GDC and verified by Deluxe. Special attention should be paid to the security concerns when using this option.</p>
-
-<p style="margin-left: 1.5em">iii. This option <em>does not work</em> on Sony systems, presently.</p>
-
-<p style="margin-left: 1.5em">iv. This option does not work with the Dolby CP850 using system software v2.3.2.3 or earlier. Instead, the software version referenced in 10.d.iii above should be installed.</p>
-
-<p style="margin-left: 1.5em">v. This option has not been tested on Christie, as there is currently a fix available (see 10.a above), and this workaround is not needed.</p>
-
-<p style="margin-left: 1.0em">c. FOR Sony:</p>
-
-<p style="margin-left: 1.5em">i. As an interim measure to support cinema operations, Sony is working with Deluxe and the studios to provide support for updating CPLs for certain content as necessary to enable playback on Sony projectors (as per 11.a.i above).</p>
+- a. A new CPL may be generated with a currently valid certificate in the signature.
+    - i. This may either be done as Version File (VF) package of just CPL/PKL/AssetMap or full OV package with original MXF track files.
+    - ii. This DOES NOT require new MXF track files or a re-encode of the essence files (no “re-packaging” or “re-mastering”).
+    - iii. This works on all systems currently affected.
+    - iv. This is not expected to be a long-term “fix”, only to be done in some cases as needed until future software updates are published by server manufacturers.
+- b. FOR GDC ONLY:
+    - i. A new SMPTE KDM may be generated without ContentAuthenticator
+        - a. This will bypass the stoppage of playback during the additional signature certificate validation as noted in the ISDCF Doc 5 – Guideline for SMPTE KDMs and Certificates Behaviors (available at: <a href="https://files.isdcf.com/papers/ISDCF-Doc5-kdm-certs.pdf">https://files.isdcf.com/papers/ISDCF-Doc5-kdm-certs.pdf</a>), item “CPL Signature” in section (3.2):<br/>– <em>In the case of a KDM with the ContentAuthenticator element present, a failed CPL Signature failure shall always result in playback rejection. In such case, the certificates used in the CPL signing chain shall successfully pass the applicable validation rules identified in Annex A. Failure to pass identified certificate validation rules shall result in playback rejection as well.<br/>– In the case of a KDM without ContentAuthenticator, a CPL signature shall NOT result in playback rejection. It is recommended that a CPL signature failure be logged in such cases, while the playback shall NOT be forbidden because of this failure. In such case, the certificates used in the CPL signing chain do not have to pass the applicable validation rules identified in Annex A. Failure to pass identified certificate validation rules shall NOT result in playback rejection.</em>
+    - ii. This has been vetted by GDC and verified by Deluxe. Special attention should be paid to the security concerns when using this option.
+    - iii. This option <em>does not work</em> on Sony systems, presently.
+    - iv. This option does not work with the Dolby CP850 using system software v2.3.2.3 or earlier. Instead, the software version referenced in 10.d.iii above should be installed.
+    - v. This option has not been tested on Christie, as there is currently a fix available (see 10.a above), and this workaround is not needed.
+- c. FOR Sony:
+    - i. As an interim measure to support cinema operations, Sony is working with Deluxe and the studios to provide support for updating CPLs for certain content as necessary to enable playback on Sony projectors (as per 11.a.i above).
 
 ### 12. All this mentioning of certificates, are KDMs affected?
 
-<p style="margin-left: 1.0em">a. NO – All current validation of certificates within KDMs is <em>working as intended and expected</em>.</p>
-
-<p style="margin-left: 1.0em">b. KDMs are meant to expire, as well as their certificates.</p>
-
-<p style="margin-left: 1.5em">i. Deluxe migrated their KDM certificate globally mid-2023, and recently migrated all KDMs that were on the “old” Cipher (v1) certificate, as per normal planning.</p>
-
-<p style="margin-left: 1.5em">ii. This is not the first mastering or KDM certificate that has expired, this is a common experience as most (if not all) vendors have had bulk KDM certificate migrations in the past.</p>
+- a. NO – All current validation of certificates within KDMs is <em>working as intended and expected</em>.
+- b. KDMs are meant to expire, as well as their certificates.
+    - i. Deluxe migrated their KDM certificate globally mid-2023, and recently migrated all KDMs that were on the “old” Cipher (v1) certificate, as per normal planning.
+    - ii. This is not the first mastering or KDM certificate that has expired, this is a common experience as most (if not all) vendors have had bulk KDM certificate migrations in the past.
 
 ## Meeting Notes (as of January 2024)
 
