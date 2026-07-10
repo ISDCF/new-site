@@ -15,13 +15,13 @@ menu:
     In Memoriam - Jerry Pierce: /intersociety/jerry-pierce/
     Membership: /intersociety/membership/
     Ken Mason Award: /intersociety/ken-mason-award/
-  Meetings:
-    Notes: /events/notes/
-    Logistics: /events/logistics/
+  Events:
+    Meeting Notes: /events/notes/
+    Meeting Logistics: /events/logistics/
     Calendar: /events/calendar/
     Cinema Systems Summit 2025: /events/cinema-systems-summit/2025/
-  Technical Details:
-    Documents: /resources/documents/
+  Resources:
+    Technical Documents: /resources/documents/
     Expiring Certs: /resources/expiring-certs/
     SMPTE Standards: /resources/standards/
     Other Resources: /resources/other/
