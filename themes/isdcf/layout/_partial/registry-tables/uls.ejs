@@ -1,0 +1,31 @@
+<table id="sorttable" class="table table-small table-hover display">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="align-text-top">Usage</th>
+      <th scope="col" class="align-text-top">Name</th>
+      <th scope="col" class="align-text-top col-2">UL</th>
+      <th scope="col" class="align-text-top">Defining Document(s)</th>
+      <th scope="col" class="align-text-top">Notes</th>
+    </tr>
+  </thead>
+  <tbody id="searchTable">
+    <% data.forEach(function (entry) { %>
+      <tr id="<%= idType %>-<%= strip(entry.ul) %>">
+        <td><%= entry.usage %></td>
+        <td>
+          <code class="sampCode"><%= entry.name %></code>
+          <% if (entry.obsolete) { %>
+            <span class="mx-3 text-bg-danger badge">Deprecated</span>
+          <% } %>
+        </td>
+        <td class="cell-breakAll"><code><%= entry.ul %></code></td>
+        <td>
+          <% (entry.definingDocs || []).forEach(function (doc, i, arr) { %>
+            <a href="<%= doc.url %>" target="_blank">[<%= doc.name %>]</a><% if (i < arr.length - 1) { %><br><% } %>
+          <% }) %>
+        </td>
+        <td><span class="small"><em><%= entry.note %></em></span></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

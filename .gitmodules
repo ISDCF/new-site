@@ -1,0 +1,3 @@
+[submodule "external/registries"]
+	path = external/registries
+	url = https://github.com/ISDCF/registries.git

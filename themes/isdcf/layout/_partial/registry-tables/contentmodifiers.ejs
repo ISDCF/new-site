@@ -1,0 +1,57 @@
+<table id="sorttable" class="table table-small table-hover display">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="align-text-top">#</th>
+      <th scope="col" class="align-text-top">DCNC Content Modifier Value<br><small>(For CTT)</small></th>
+      <th scope="col" class="align-text-top">Description</th>
+      <th scope="col" class="align-text-top col-4">CPL Metadata Sample/Values</th>
+      <th scope="col" class="align-text-top col-2">Metadata Defining Document(s)</th>
+    </tr>
+  </thead>
+  <tbody id="searchTable">
+    <% data.forEach(function (entry) { %>
+      <% var cm = entry.cplMetadata || {}; %>
+      <tr id="<%= idType %>-<%= strip(entry.dcncCode) %>">
+        <td><%= entry.dcncSortOrder %></td>
+        <td class="code">
+          <a class="anchor" id="<%= strip(entry.dcncCode) %>" href="#<%= strip(entry.dcncCode) %>"></a><code><%= entry.dcncCode %></code>
+        </td>
+        <td><%= entry.description %></td>
+        <td class="cell-breakAll">
+          <code class="sampCode">
+            <% if (cm.metaType === 'Element Value') { %>
+              &lt;<%= cm.element %>&gt;<code><%= cm.elementValue %></code>&lt;/<%= cm.element %>&gt;
+            <% } else if (cm.metaType === 'Sub Element Value') { %>
+              &lt;<%= cm.element %>&gt;<br>
+              <% Object.keys(cm.subElement || {}).forEach(function (key) { %>
+                &nbsp;&nbsp;&lt;<%= key %>&gt;<code><%= cm.subElement[key] %></code>&lt;/<%= key %>&gt;<br>
+              <% }) %>
+              &lt;/<%= cm.element %>&gt;
+            <% } else if (cm.metaType === 'Element Attribute Value') { %>
+              &lt;<%= cm.element %> <%= cm.attribute %>="<code><%= cm.attributeValue %></code>"&gt;...&lt;/<%= cm.element %>&gt;
+            <% } else if (cm.metaType === 'Element and Attribute Value') { %>
+              &lt;<%= cm.element %> <%= cm.attribute %>="<code><%= cm.attributeValue %></code>"&gt;<code><%= cm.elementValue %></code>&lt;/<%= cm.element %>&gt;
+            <% } else if (cm.metaType === 'Element Present') { %>
+              &lt;<%= cm.element %>&gt;...&lt;/<%= cm.element %>&gt;
+            <% } else if (cm.metaType === 'Extension Present') { %>
+              &lt;cpl-meta:ExtensionMetadata scope="<code><%= cm.extScope %></code>"&gt;<br>
+              &nbsp;&nbsp;&lt;cpl-meta:Name&gt;<code><%= cm.extName %></code>&lt;/cpl-meta:Name&gt;<br>
+              &nbsp;&nbsp;&lt;cpl-meta:PropertyList&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;cpl-meta:Property&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cpl-meta:Name&gt;<code><%= cm.extpropName %></code>&lt;/cpl-meta:Name&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cpl-meta:Value&gt;<code><%= cm.extpropValue %></code>&lt;/cpl-meta:Value&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/cpl-meta:Property&gt;<br>
+              &nbsp;&nbsp;&lt;/cpl-meta:PropertyList&gt;<br>
+              &lt;/cpl-meta:ExtensionMetadata&gt;
+            <% } %>
+          </code>
+        </td>
+        <td>
+          <% (cm.definingDocs || []).forEach(function (doc, i, arr) { %>
+            <a href="<%= doc.url %>" target="_blank">[<%= doc.name %>]</a><% if (i < arr.length - 1) { %><br><% } %>
+          <% }) %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

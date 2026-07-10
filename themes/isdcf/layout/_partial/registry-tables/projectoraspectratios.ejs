@@ -1,0 +1,45 @@
+<table id="sorttable" class="table table-small table-hover display">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="align-text-top sort-column">#</th>
+      <th scope="col" class="align-text-top">DCNC Code<br><small>(For CTT)</small></th>
+      <th scope="col" class="align-text-top">Description</th>
+      <th scope="col" class="align-text-top">ScreenAspectRatio Values<br><small>(For DCP Metadata)</small></th>
+      <th scope="col" class="align-text-top">MainPictureStoredArea Values<br><small>(For DCP Metadata)</small></th>
+      <th scope="col" class="align-text-top">Metadata Defining Document(s)</th>
+    </tr>
+  </thead>
+  <tbody id="searchTable">
+    <% data.forEach(function (entry) { %>
+      <% var cm = entry.cplMetadata || {}; var k2 = cm['2K'] || {}; var k4 = cm['4K'] || {}; %>
+      <tr id="<%= idType %>-<%= entry.dcncCode %>">
+        <td class="sort-column"><%= entry.dcncSortOrder %></td>
+        <td class="code">
+          <a class="anchor" id="<%= entry.dcncCode %>" href="#<%= entry.dcncCode %>"></a><code><%= entry.dcncCode %></code>
+        </td>
+        <td><%= entry.description %></td>
+        <td>
+          <div class="border-bottom p-2">
+            <code class="sampCode">For 2K: "<code><%= k2.ScreenAspectRatio %></code>"</code>
+          </div>
+          <div class="p-2">
+            <code class="sampCode">For 4K: "<code><%= k4.ScreenAspectRatio %></code>"</code>
+          </div>
+        </td>
+        <td>
+          <div class="border-bottom p-2">
+            <code class="sampCode">For 2k, Height: "<code><%= (k2.MainPictureStoredArea||{}).Height %></code>", Width: "<code><%= (k2.MainPictureStoredArea||{}).Width %></code>"</code>
+          </div>
+          <div class="p-2">
+            <code class="sampCode">For 4K, Height: "<code><%= (k4.MainPictureStoredArea||{}).Height %></code>", Width: "<code><%= (k4.MainPictureStoredArea||{}).Width %></code>"</code>
+          </div>
+        </td>
+        <td>
+          <% (cm.definingDocs || []).forEach(function (doc, i, arr) { %>
+            <a href="<%= doc.url %>" target="_blank">[<%= doc.name %>]</a><% if (i < arr.length - 1) { %><br><% } %>
+          <% }) %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

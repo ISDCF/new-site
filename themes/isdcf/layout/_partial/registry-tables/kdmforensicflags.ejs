@@ -1,0 +1,24 @@
+<table id="sorttable" class="table table-small table-hover display">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="align-text-top">Description</th>
+      <th scope="col" class="align-text-top col-6">URI</th>
+      <th scope="col" class="align-text-top col-2">Defining Document(s)</th>
+      <th scope="col" class="align-text-top">Notes</th>
+    </tr>
+  </thead>
+  <tbody id="searchTable">
+    <% data.forEach(function (entry) { %>
+      <tr id="<%= idType %>-<%= strip(entry.uri) %>">
+        <td><%= entry.description %></td>
+        <td class="cell-breakAll"><code><%= entry.uri %></code></td>
+        <td>
+          <% (entry.definingDocs || []).forEach(function (doc, i, arr) { %>
+            <a href="<%= doc.url %>" target="_blank">[<%= doc.name %>]</a><% if (i < arr.length - 1) { %><br><% } %>
+          <% }) %>
+        </td>
+        <td><span class="small"><em><%= entry.note %></em></span></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

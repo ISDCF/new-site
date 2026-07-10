@@ -3,8 +3,8 @@
 <%- partial('_partial/head') %>
 <body>
   <%- partial('_partial/header') %>
-  <main class="site-main">
-    <div class="container">
+  <main class="site-main<%= page.isRegistry ? ' site-main--registry' : '' %>">
+    <div class="container<%= page.isRegistry ? ' container--wide' : '' %>">
       <%- body %>
     </div>
   </main>
