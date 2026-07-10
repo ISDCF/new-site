@@ -10,7 +10,9 @@ favico: /img/favicon_IS.svg
 menu:
   About: /about/
   Intersociety:
-    Leadership: /is/Leadership/
+    Leadership: /intersociety/leadership/
+    In Memoriam - Jerry Pierce: /intersociety/jerry-pierce/
+    Membership: /intersociety/membership/
   Meetings:
     Notes: /meetings/notes/
     Logistics: /meetings/logistics/
