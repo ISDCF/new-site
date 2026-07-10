@@ -8,7 +8,9 @@ favico: /img/favicon_IS.svg
 
 # Top navbar links, in display order.
 menu:
-  About: /about/
+  About:
+    Welcome: /about/welcome/
+    Terms: /about/terms/
   Intersociety:
     About: /intersociety/about/
     Leadership: /intersociety/leadership/
