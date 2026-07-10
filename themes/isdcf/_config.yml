@@ -10,9 +10,11 @@ favico: /img/favicon_IS.svg
 menu:
   About: /about/
   Intersociety:
+    About: /intersociety/about/
     Leadership: /intersociety/leadership/
     In Memoriam - Jerry Pierce: /intersociety/jerry-pierce/
     Membership: /intersociety/membership/
+    Ken Mason Award: /intersociety/ken-mason-award/
   Meetings:
     Notes: /meetings/notes/
     Logistics: /meetings/logistics/
