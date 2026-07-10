@@ -4,7 +4,7 @@ layout: page
 alias: intersociety/index.html
 ---
 
-![InterSociety](/intersociety/about/InterSociety-Logo.png)
+![InterSociety](/intersociety/about/inter-society.svg)
 
 [Join InterSociety](https://www.isdcf.com/membership/)
 
