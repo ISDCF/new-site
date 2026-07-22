@@ -16,8 +16,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT_DIR = path.join(__dirname, '..', '..');
-const CONTENT_DIR = path.join(ROOT_DIR, 'themes', 'isdcf', 'registries', 'content');
-const IMG_DIR = path.join(ROOT_DIR, 'themes', 'isdcf', 'registries', 'img');
+const CONTENT_DIR = path.join(ROOT_DIR, 'registries', 'content');
+const IMG_DIR = path.join(ROOT_DIR, 'registries', 'img');
 const REGISTRIES_DATA_DIR = path.join(ROOT_DIR, 'external', 'registries', 'src', 'main', 'data');
 const LANGUAGE_UTILS_PATH = path.join(ROOT_DIR, 'external', 'registries', 'src', 'main', 'scripts', 'language-utilities.js');
 
@@ -220,7 +220,7 @@ function loadRegistryData(pageTemplate) {
 /* ---------------------------------------------------------------------- */
 
 // Ported content markdown references these at "/img/registries/<file>".
-// Since they live under themes/isdcf/registries/img/ (not themes/isdcf/source/),
+// Since they live under registries/img/ (not themes/isdcf/source/),
 // Hexo's normal theme-asset pipeline won't publish them, so the Hexo
 // generator registers an explicit route per file (see scripts/registries.js).
 function loadImageAssets() {

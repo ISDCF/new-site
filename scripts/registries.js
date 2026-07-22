@@ -9,7 +9,7 @@
  *
  * Registry DATA comes from the `external/registries` git submodule
  * (JSON files under src/main/data/). Page copy (descriptive markdown)
- * comes from themes/isdcf/registries/content/ (ported from
+ * comes from registries/content/ (ported from
  * registries-site's own content/ directory). See scripts/lib/registries-core.js
  * for the page manifest and all the pure (Hexo-independent) logic.
  *
@@ -82,7 +82,7 @@ hexo.extend.generator.register('registries', function (locals) {
 
   // Static images referenced by ported content markdown (e.g.
   // "/img/registries/dcnc_ov-vf.jpg"). These live under
-  // themes/isdcf/registries/img/, outside Hexo's normal theme-asset
+  // registries/img/, outside Hexo's normal theme-asset
   // pipeline, so they need their own (layout-less, raw-buffer) routes.
   const imageRoutes = core.loadImageAssets();
 
