@@ -1,10 +1,8 @@
 ---
-title: Terms
+title: Terms of participation
 layout: page
 alias: terms/index.html
 ---
-
-## Terms of participation
 
 *Updated April 28, 2015*
 

@@ -1,10 +1,10 @@
 ---
-title: Membership
+title: Members
 layout: page
 alias: membership/index.html
 ---
 
-## ISDCF Sponsoring Companies
+## Sponsoring Companies
 
 <div class="logo-grid">
 <div class="logo-grid__item"><div class="logo-grid__logo"><img src="./logo/aegisolve.png" alt="Aegisolve, Inc logo"></div><div class="logo-grid__name">Aegisolve, Inc</div></div>
@@ -33,24 +33,4 @@ alias: membership/index.html
 <div class="logo-grid__item"><div class="logo-grid__logo"><img src="./logo/warnerbros.png" alt="Warner Bros. logo"></div><div class="logo-grid__name">Warner Bros.</div></div>
 </div>
 
-## Becoming a member
-
-[ISDCF Membership Packet](./ISDCF-Membership-Packet-2023.pdf)
-
-To become a member or just be added to the announcement list, fill in the form below:
-
-[ISDCF Registration](https://docs.google.com/forms/d/e/1FAIpQLSe4CVuTqvIVLa0VzWQ0kzbol3fvRQItkZSBgGxJC6sgPYF5iQ/viewform?usp=pp_url)
-
-## Membership dues
-
-In March 2023 Intersociety and ISDCF implemented a new policy to allow for the sustainability of the organization going forward. The organization will ask members to contribute $4,000/year for those in companies over $5M in yearly revenue and $100/year for those who are individuals or part of a company with under $5M in yearly revenue. To become a member please send a note to [treasurer@isdcf.com](mailto:treasurer@isdcf.com).
-
-The Intersociety Board reserves the right to grant gratis membership on a case by case basis. All such memberships will be reviewed yearly by the Board.
-
-ISDCF has been in operation for over 17 years with primary support by Universal Pictures. This unique organization has been able to provide significant contributions to the cinema industry through the volunteer efforts of its members.
-
-## Announcement list
-
-ISDCF has an announcement list. Everyone is welcome to become a member of this list. Members have a separate discussion list.
-
-Please [contact us](mailto:info@isdcf.com) to be added to the appropriate lists.
+{% url_for 'Become a member today!' '/about/join' %}

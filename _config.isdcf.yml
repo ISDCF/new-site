@@ -8,13 +8,17 @@ favico: /img/favicon_IS.svg
 
 # Top navbar links, in display order.
 menu:
+  Home: /
   About:
-    Welcome: /about/welcome/
+    About us: /about/aboutus/
+    Join: /about/join/
+    Members: /about/members/
     Terms: /about/terms/
-    Membership: /about/membership/
+    Public and member-only resources: /about/it
   Meetings:
     Notes: /events/notes/
     Directions: /events/logistics/
+    Calendar (member-only): https://lists.isdcf.com/g/members/calendar
   Resources:
     Digital Cinema Naming Convention: /registry/dcncintro/
     Metadata Registry: /registry/registryintro/

@@ -1,5 +1,5 @@
 ---
-title: Technical Docs
+title: Technical Documents
 layout: page
 alias: technical-docs/index.html
 ---
