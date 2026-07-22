@@ -6,71 +6,37 @@
   var sections = page.sections || {};
   var allPages = page.allPages || [];
 
-  // Find the pageTemplate of the menuCollapse section (if any) that
-  // contains the current page, so its sidebar sub-menu can start expanded.
-  function findOpenSection(pages, currentTemplate) {
-    var sectionName = null;
+  // The sidebar only lists the pages in the current page's own section
+  // (the menuLevel-3 entries between the matching menuCollapse/
+  // menuCollapseEnd marker pair), not every section.
+  function currentSectionPages(pages, currentTemplate) {
+    var sectionTemplate = null;
     for (var i = 0; i < pages.length; i++) {
       var p = pages[i];
-      if (p.pageType === 'menuCollapse') sectionName = p.pageTemplate;
-      else if (p.pageType === 'menuCollapseEnd') sectionName = null;
-      else if (p.pageTemplate === currentTemplate) return sectionName;
+      if (p.pageType === 'menuCollapse') sectionTemplate = p.pageTemplate;
+      else if (p.pageType === 'menuCollapseEnd') sectionTemplate = null;
+      else if (p.pageTemplate === currentTemplate) break;
     }
-    return null;
+    if (!sectionTemplate) return [];
+    var collecting = false;
+    var result = [];
+    pages.forEach(function (p) {
+      if (p.pageType === 'menuCollapse' && p.pageTemplate === sectionTemplate) collecting = true;
+      else if (p.pageType === 'menuCollapseEnd' && p.pageTemplate === sectionTemplate) collecting = false;
+      else if (collecting) result.push(p);
+    });
+    return result;
   }
-  var openSection = findOpenSection(allPages, current);
+  var sidebarPages = currentSectionPages(allPages, current);
 %>
 <div class="registry-page">
-
-  <nav aria-label="breadcrumb" class="registry-breadcrumb d-print-none">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<%- url_for('/') %>">Home</a></li>
-      <% if (current !== 'index') { %>
-        <li class="breadcrumb-item"><a href="<%- url_for('/registry/') %>">DCNC and Metadata/Terminology Registries</a></li>
-      <% } %>
-      <% if (page.breadCrumb) { %>
-        <% page.breadCrumb.forEach(function (crumb) { %>
-          <% var landing = page.sectionLandingPage[crumb]; %>
-          <li class="breadcrumb-item"><a href="<%- url_for('/registry/' + landing + '/') %>"><%= crumb %></a></li>
-        <% }) %>
-      <% } %>
-      <li class="breadcrumb-item active" aria-current="page"><%= page.pageTitle %></li>
-    </ol>
-  </nav>
 
   <div class="registry-layout">
 
     <aside class="registry-sidebar d-print-none">
-      <div class="registry-pagination">
-        <% if (page.prevPage) { %>
-          <a class="registry-pagination__link" href="<%- url_for(page.routePath(page.prevPage.pageTemplate)) %>">&laquo; Previous</a>
-        <% } else { %>
-          <span></span>
-        <% } %>
-        <% if (page.nextPage) { %>
-          <a class="registry-pagination__link" href="<%- url_for(page.routePath(page.nextPage.pageTemplate)) %>">Next &raquo;</a>
-        <% } %>
-      </div>
-
       <ul class="registry-menu list-unstyled">
-        <% allPages.forEach(function (p) { %>
-          <% if (p.menuLevel === 1 && p.pageType === 'descriptiveText') { %>
-            <li>
-              <a class="registry-menu__link<%= p.pageTemplate === current ? ' active' : '' %>" href="<%- url_for(page.routePath(p.pageTemplate)) %>"><%= p.pageTitle %></a>
-            </li>
-          <% } else if (p.menuLevel === 2 && p.pageType === 'menuCollapse') {
-               var sectionId = 'registry-menu-' + p.pageTemplate;
-               var isOpenSection = p.pageTemplate === openSection;
-          %>
-            <li class="registry-menu__section">
-              <a class="registry-menu__section-toggle<%= isOpenSection ? '' : ' collapsed' %>" href="#<%- sectionId %>" data-bs-toggle="collapse" role="button" aria-expanded="<%= isOpenSection ? 'true' : 'false' %>" aria-controls="<%- sectionId %>"><%= p.pageTitle %></a>
-              <ul class="registry-menu__sub collapse list-unstyled<%= isOpenSection ? ' show' : '' %>" id="<%- sectionId %>">
-          <% } else if (p.menuLevel === 2 && p.pageType === 'menuCollapseEnd') { %>
-              </ul>
-            </li>
-          <% } else if (p.menuLevel === 3) { %>
-                <li><a class="registry-menu__link registry-menu__link--sub<%= p.pageTemplate === current ? ' active' : '' %>" href="<%- url_for(page.routePath(p.pageTemplate)) %>"><%= p.pageTitle %></a></li>
-          <% } %>
+        <% sidebarPages.forEach(function (p) { %>
+          <li><a class="registry-menu__link<%= p.pageTemplate === current ? ' active' : '' %>" href="<%- url_for(page.routePath(p.pageTemplate)) %>"><%= p.pageTitle %></a></li>
         <% }) %>
       </ul>
     </aside>
@@ -135,17 +101,6 @@
           <%- partial('_partial/registry-tables/' + page.pageTemplate, { data: page.registryData, idType: page.idType, strip: page.strip }) %>
         </div>
       <% } %>
-
-      <div class="registry-pagination registry-pagination--bottom d-print-none">
-        <% if (page.prevPage) { %>
-          <a class="registry-pagination__link" href="<%- url_for(page.routePath(page.prevPage.pageTemplate)) %>">&laquo; Previous</a>
-        <% } else { %>
-          <span></span>
-        <% } %>
-        <% if (page.nextPage) { %>
-          <a class="registry-pagination__link" href="<%- url_for(page.routePath(page.nextPage.pageTemplate)) %>">Next &raquo;</a>
-        <% } %>
-      </div>
 
     </div>
   </div>

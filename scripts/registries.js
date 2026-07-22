@@ -49,8 +49,6 @@ hexo.extend.generator.register('registries', function (locals) {
       }
     }
 
-    const navigation = core.getPrevNext(pageDef.pageOrder);
-
     const data = {
       title: pageDef.pageTitle,
       isRegistry: true,
@@ -59,14 +57,9 @@ hexo.extend.generator.register('registries', function (locals) {
       pageType: pageDef.pageType,
       idType: pageDef.idType || null,
       menuLevel: pageDef.menuLevel,
-      breadCrumb: pageDef.breadCrumb || null,
-      pageOrder: pageDef.pageOrder,
       sections: sections,
       registryData: registryData,
       allPages: core.pages,
-      sectionLandingPage: core.SECTION_LANDING_PAGE,
-      prevPage: navigation.prev,
-      nextPage: navigation.next,
       routePath: core.routePath,
       strip: core.stripIllegalChars
     };

@@ -22,74 +22,65 @@ const REGISTRIES_DATA_DIR = path.join(ROOT_DIR, 'external', 'registries', 'src',
 const LANGUAGE_UTILS_PATH = path.join(ROOT_DIR, 'external', 'registries', 'src', 'main', 'scripts', 'language-utilities.js');
 
 /*
- * The page manifest, ported verbatim (order, titles, menu levels, page
- * orders, breadcrumbs) from registries-site's build.js. `pageType` is one
- * of "descriptiveText" | "registryTable" | "menuCollapse" | "menuCollapseEnd".
- * Only entries with a numeric `pageOrder` are actual pages/routes; the
- * "menuCollapse"/"menuCollapseEnd" entries are sidebar section markers.
+ * The page manifest, ported (order, titles, menu levels, page orders) from
+ * registries-site's build.js. `pageType` is one of "descriptiveText" |
+ * "registryTable" | "menuCollapse" | "menuCollapseEnd". Only entries with a
+ * numeric `pageOrder` are actual pages/routes; the "menuCollapse"/
+ * "menuCollapseEnd" entries are sidebar section markers -- the sidebar
+ * (layout/registry.ejs) only lists the menuLevel-3 entries between the
+ * marker pair matching the current page's own section.
+ *
+ * Deviation from the original: registries-site had a single combined
+ * "index" page (pageOrder 1, menuLevel 1) covering the whole /registry/
+ * section, with only the Metadata Registry group having its own
+ * "Introduction" sub-page. Here that combined page has been replaced with
+ * "dcncintro" -- an Introduction sub-page for the Naming Convention group,
+ * mirroring "registryintro" -- so all three sections (Naming Convention,
+ * Metadata Registry, Terminology Registry) are reachable as their own
+ * top-level pages (see _config.isdcf.yml's "DCNC and Registry" menu),
+ * rather than through one shared landing page.
  */
 const pages = [
-  { pageType: 'descriptiveText', pageTemplate: 'index', pageTitle: 'Digital Cinema Naming Convention and Metadata/Terminology Registries', menuLevel: 1, pageOrder: 1 },
   { pageType: 'menuCollapse', pageTemplate: 'namingconvention', pageTitle: 'Digital Cinema Naming Convention', menuLevel: 2 },
-  { pageType: 'descriptiveText', pageTemplate: 'general', pageTitle: 'General Tips', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 2 },
-  { pageType: 'descriptiveText', pageTemplate: 'illustratedguide', pageTitle: 'Illustrated Guide', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 3 },
-  { pageType: 'registryTable', pageTemplate: 'contenttypes', idType: 'contenttype', pageTitle: 'Content Types', schemaBuild: '1.0.0-beta.1', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 4 },
-  { pageType: 'registryTable', pageTemplate: 'contentmodifiers', idType: 'contentmodifier', pageTitle: 'Content Modifiers', schemaBuild: '1.0.1', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 5 },
-  { pageType: 'descriptiveText', pageTemplate: 'labeling3dproduct', pageTitle: "Labeling 3D Product", menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 6 },
-  { pageType: 'descriptiveText', pageTemplate: 'labelingcombotrailers', pageTitle: "Labeling 'Combo' Trailers", menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 7 },
-  { pageType: 'registryTable', pageTemplate: 'projectoraspectratios', idType: 'projectoraspectratio', pageTitle: 'Projector Aspect Ratios and Resolutions', schemaBuild: '1.0.0-beta.1', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 8 },
-  { pageType: 'registryTable', pageTemplate: 'languages', idType: 'language', pageTitle: 'Language Codes', schemaBuild: '1.0.1', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 9 },
-  { pageType: 'descriptiveText', pageTemplate: 'openandclosedcaptions', pageTitle: 'Open and Closed Captions', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 10 },
-  { pageType: 'registryTable', pageTemplate: 'territories', idType: 'territory', pageTitle: 'Territory Codes', schemaBuild: '1.0.3', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 11 },
-  { pageType: 'registryTable', pageTemplate: 'ratings', idType: 'rating', pageTitle: 'Ratings', schemaBuild: '1.0.0-beta.1', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 12 },
-  { pageType: 'registryTable', pageTemplate: 'audioconfigs', idType: 'audioconfig', pageTitle: 'Audio Config and Narrative Description Tracks', schemaBuild: '1.0.0-beta.1', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 13 },
-  { pageType: 'registryTable', pageTemplate: 'studios', idType: 'studio', pageTitle: 'Studio Codes', schemaBuild: '1.0.0', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 14 },
-  { pageType: 'descriptiveText', pageTemplate: 'creationdate', pageTitle: 'Creation Date', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 15 },
-  { pageType: 'registryTable', pageTemplate: 'facilities', idType: 'facility', pageTitle: 'Facility Codes', schemaBuild: '2.0.0', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 16 },
-  { pageType: 'descriptiveText', pageTemplate: 'standard', pageTitle: 'Standard', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 17 },
-  { pageType: 'descriptiveText', pageTemplate: 'pkgtypes', pageTitle: 'Package Types', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 18 },
-  { pageType: 'descriptiveText', pageTemplate: 'imax', pageTitle: 'IMAX', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 19 },
-  { pageType: 'descriptiveText', pageTemplate: 'references', pageTitle: 'References', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 20 },
-  { pageType: 'descriptiveText', pageTemplate: 'acknowledgements', pageTitle: 'Acknowledgements', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 21 },
-  { pageType: 'descriptiveText', pageTemplate: 'translations', pageTitle: 'Translations', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 22 },
-  { pageType: 'descriptiveText', pageTemplate: 'updates', pageTitle: 'Updates', menuLevel: 3, breadCrumb: ['Naming Convention'], pageOrder: 23 },
+  { pageType: 'descriptiveText', pageTemplate: 'dcncintro', pageTitle: 'Introduction', menuLevel: 3, pageOrder: 1 },
+  { pageType: 'descriptiveText', pageTemplate: 'general', pageTitle: 'General Tips', menuLevel: 3, pageOrder: 2 },
+  { pageType: 'descriptiveText', pageTemplate: 'illustratedguide', pageTitle: 'Illustrated Guide', menuLevel: 3, pageOrder: 3 },
+  { pageType: 'registryTable', pageTemplate: 'contenttypes', idType: 'contenttype', pageTitle: 'Content Types', schemaBuild: '1.0.0-beta.1', menuLevel: 3, pageOrder: 4 },
+  { pageType: 'registryTable', pageTemplate: 'contentmodifiers', idType: 'contentmodifier', pageTitle: 'Content Modifiers', schemaBuild: '1.0.1', menuLevel: 3, pageOrder: 5 },
+  { pageType: 'descriptiveText', pageTemplate: 'labeling3dproduct', pageTitle: "Labeling 3D Product", menuLevel: 3, pageOrder: 6 },
+  { pageType: 'descriptiveText', pageTemplate: 'labelingcombotrailers', pageTitle: "Labeling 'Combo' Trailers", menuLevel: 3, pageOrder: 7 },
+  { pageType: 'registryTable', pageTemplate: 'projectoraspectratios', idType: 'projectoraspectratio', pageTitle: 'Projector Aspect Ratios and Resolutions', schemaBuild: '1.0.0-beta.1', menuLevel: 3, pageOrder: 8 },
+  { pageType: 'registryTable', pageTemplate: 'languages', idType: 'language', pageTitle: 'Language Codes', schemaBuild: '1.0.1', menuLevel: 3, pageOrder: 9 },
+  { pageType: 'descriptiveText', pageTemplate: 'openandclosedcaptions', pageTitle: 'Open and Closed Captions', menuLevel: 3, pageOrder: 10 },
+  { pageType: 'registryTable', pageTemplate: 'territories', idType: 'territory', pageTitle: 'Territory Codes', schemaBuild: '1.0.3', menuLevel: 3, pageOrder: 11 },
+  { pageType: 'registryTable', pageTemplate: 'ratings', idType: 'rating', pageTitle: 'Ratings', schemaBuild: '1.0.0-beta.1', menuLevel: 3, pageOrder: 12 },
+  { pageType: 'registryTable', pageTemplate: 'audioconfigs', idType: 'audioconfig', pageTitle: 'Audio Config and Narrative Description Tracks', schemaBuild: '1.0.0-beta.1', menuLevel: 3, pageOrder: 13 },
+  { pageType: 'registryTable', pageTemplate: 'studios', idType: 'studio', pageTitle: 'Studio Codes', schemaBuild: '1.0.0', menuLevel: 3, pageOrder: 14 },
+  { pageType: 'descriptiveText', pageTemplate: 'creationdate', pageTitle: 'Creation Date', menuLevel: 3, pageOrder: 15 },
+  { pageType: 'registryTable', pageTemplate: 'facilities', idType: 'facility', pageTitle: 'Facility Codes', schemaBuild: '2.0.0', menuLevel: 3, pageOrder: 16 },
+  { pageType: 'descriptiveText', pageTemplate: 'standard', pageTitle: 'Standard', menuLevel: 3, pageOrder: 17 },
+  { pageType: 'descriptiveText', pageTemplate: 'pkgtypes', pageTitle: 'Package Types', menuLevel: 3, pageOrder: 18 },
+  { pageType: 'descriptiveText', pageTemplate: 'imax', pageTitle: 'IMAX', menuLevel: 3, pageOrder: 19 },
+  { pageType: 'descriptiveText', pageTemplate: 'references', pageTitle: 'References', menuLevel: 3, pageOrder: 20 },
+  { pageType: 'descriptiveText', pageTemplate: 'acknowledgements', pageTitle: 'Acknowledgements', menuLevel: 3, pageOrder: 21 },
+  { pageType: 'descriptiveText', pageTemplate: 'translations', pageTitle: 'Translations', menuLevel: 3, pageOrder: 22 },
+  { pageType: 'descriptiveText', pageTemplate: 'updates', pageTitle: 'Updates', menuLevel: 3, pageOrder: 23 },
   { pageType: 'menuCollapseEnd', pageTemplate: 'namingconvention', pageTitle: 'Naming Convention End', menuLevel: 2 },
   { pageType: 'menuCollapse', pageTemplate: 'metadataregistry', pageTitle: 'Metadata Registry', menuLevel: 2 },
-  { pageType: 'descriptiveText', pageTemplate: 'registryintro', pageTitle: 'Introduction', menuLevel: 3, breadCrumb: ['Metadata Registry'], pageOrder: 24 },
-  { pageType: 'registryTable', pageTemplate: 'cplmetadataexts', idType: 'cplmetadataext', pageTitle: 'CPL Metadata Extensions', schemaBuild: '1.0.0-beta.1', menuLevel: 3, breadCrumb: ['Metadata Registry'], pageOrder: 25 },
-  { pageType: 'registryTable', pageTemplate: 'kdmforensicflags', idType: 'kdmforensicflag', pageTitle: 'KDM Forensic Flags', schemaBuild: '1.0.0-beta.1', menuLevel: 3, breadCrumb: ['Metadata Registry'], pageOrder: 26 },
-  { pageType: 'registryTable', pageTemplate: 'uls', idType: 'ul', pageTitle: 'ULs', schemaBuild: '1.0.0-beta.1', menuLevel: 3, breadCrumb: ['Metadata Registry'], pageOrder: 27 },
+  { pageType: 'descriptiveText', pageTemplate: 'registryintro', pageTitle: 'Introduction', menuLevel: 3, pageOrder: 24 },
+  { pageType: 'registryTable', pageTemplate: 'cplmetadataexts', idType: 'cplmetadataext', pageTitle: 'CPL Metadata Extensions', schemaBuild: '1.0.0-beta.1', menuLevel: 3, pageOrder: 25 },
+  { pageType: 'registryTable', pageTemplate: 'kdmforensicflags', idType: 'kdmforensicflag', pageTitle: 'KDM Forensic Flags', schemaBuild: '1.0.0-beta.1', menuLevel: 3, pageOrder: 26 },
+  { pageType: 'registryTable', pageTemplate: 'uls', idType: 'ul', pageTitle: 'ULs', schemaBuild: '1.0.0-beta.1', menuLevel: 3, pageOrder: 27 },
   { pageType: 'menuCollapseEnd', pageTemplate: 'metadataregistry', pageTitle: 'Metadata Registry End', menuLevel: 2 },
   { pageType: 'menuCollapse', pageTemplate: 'terminologyregistry', pageTitle: 'Terminology Registry', menuLevel: 2 },
-  { pageType: 'registryTable', pageTemplate: 'terms', idType: 'term', pageTitle: 'Terms', schemaBuild: '1.0.0-beta.2', menuLevel: 3, breadCrumb: ['Terminology Registry'], pageOrder: 28 },
+  { pageType: 'registryTable', pageTemplate: 'terms', idType: 'term', pageTitle: 'Terms', schemaBuild: '1.0.0-beta.2', menuLevel: 3, pageOrder: 28 },
   { pageType: 'menuCollapseEnd', pageTemplate: 'terminologyregistry', pageTitle: 'Terminology Registry End', menuLevel: 2 }
 ];
-
-// First page (by pageOrder) within each breadcrumb section -- used to build
-// the breadcrumb link. (Note: registries-site's own header.hbs pointed the
-// "Terminology Registry" crumb at a non-existent "termsintro" page; here it
-// is fixed to point at the section's one real page, "terms".)
-const SECTION_LANDING_PAGE = {
-  'Naming Convention': 'general',
-  'Metadata Registry': 'registryintro',
-  'Terminology Registry': 'terms'
-};
 
 const realPages = pages.filter(function (p) { return typeof p.pageOrder === 'number'; });
 
 function routePath(pageTemplate) {
-  return pageTemplate === 'index' ? '/registry/' : '/registry/' + pageTemplate + '/';
-}
-
-function findPageByOrder(order) {
-  return realPages.find(function (p) { return p.pageOrder === order; }) || null;
-}
-
-function getPrevNext(pageOrder) {
-  return {
-    prev: findPageByOrder(pageOrder - 1),
-    next: findPageByOrder(pageOrder + 1)
-  };
+  return '/registry/' + pageTemplate + '/';
 }
 
 function stripIllegalChars(s) {
@@ -240,9 +231,7 @@ module.exports = {
   REGISTRIES_DATA_DIR,
   pages,
   realPages,
-  SECTION_LANDING_PAGE,
   routePath,
-  getPrevNext,
   stripIllegalChars,
   createMarkdownRenderer,
   loadSections,
