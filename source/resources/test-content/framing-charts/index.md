@@ -26,7 +26,7 @@ This chart is presented as open-source copyright by ISDCF.
 
 <p style="text-align: center;"><i>This work is licensed under a Creative Commons Attribution-Non Commercial 4.0 International License.</i></p>
 
-<p style="text-align: center;"><img src="/resources/test-content/framing-charts/cc-by-nc.png" alt="" width="88" height="31"></p>
+<p style="text-align: center;"><img src="cc-by-nc.png" alt="" width="88" height="31"></p>
 
 ---
 

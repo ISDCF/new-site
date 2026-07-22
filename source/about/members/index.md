@@ -1,7 +1,6 @@
 ---
 title: Members
 layout: page
-alias: membership/index.html
 ---
 
 ## Sponsoring Companies
@@ -33,4 +32,4 @@ alias: membership/index.html
 <div class="logo-grid__item"><div class="logo-grid__logo"><img src="./logo/warnerbros.png" alt="Warner Bros. logo"></div><div class="logo-grid__name">Warner Bros.</div></div>
 </div>
 
-{% url_for 'Become a member today!' '/about/join' %}
+{% url_for 'Become a member today!' '/about/join/' %}

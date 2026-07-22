@@ -12,9 +12,9 @@ ISDCF was formed in May 2006 to promote interactive dialogue, information exchan
 
 ## Membership
 
-We have {% url_for 'members' '/about/membership/' %} from across the cinema ecosystem, including Studios, Exhibitors, Integrators, Equipment Manufacturers, Consultants, and other committees.
+We have {% url_for 'members' '/about/members/' %} from across the cinema ecosystem, including Studios, Exhibitors, Integrators, Equipment Manufacturers, Consultants, and other committees.
 
-{% url_for 'Become a member today!' '/about/membership/' %}
+{% url_for 'Become a member today!' '/about/join/' %}
 
 ## Participation
 
