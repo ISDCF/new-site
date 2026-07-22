@@ -1,0 +1,45 @@
+<table id="sorttable" class="table table-small table-hover display">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="align-text-top col-2">Description</th>
+      <th scope="col" class="align-text-top col-6">CompositionMetadataAsset Extension</th>
+      <th scope="col" class="align-text-top">Defining Document(s)</th>
+      <th scope="col" class="align-text-top">Contact Info</th>
+      <th scope="col" class="align-text-top">Notes</th>
+    </tr>
+  </thead>
+  <tbody id="searchTable">
+    <% data.forEach(function (entry) { %>
+      <% var ext = entry.extension || {}; %>
+      <tr id="<%= idType %>-<%= strip(entry.description) %>">
+        <td><%= entry.description %></td>
+        <td class="cell-breakAll">
+          <code class="sampCode">
+            &lt;cpl-meta:ExtensionMetadata scope="<code><%= ext.extScope %></code>"&gt;<br>
+            &nbsp;&nbsp;&lt;cpl-meta:Name&gt;<code><%= ext.extName %></code>&lt;/cpl-meta:Name&gt;<br>
+            <% if (ext.extpropName) { %>
+              &nbsp;&nbsp;&lt;cpl-meta:PropertyList&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;cpl-meta:Property&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cpl-meta:Name&gt;<code><%= ext.extpropName %></code>&lt;/cpl-meta:Name&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cpl-meta:Value&gt;<code><%= ext.extpropValue %></code>&lt;/cpl-meta:Value&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/cpl-meta:Property&gt;<br>
+              &nbsp;&nbsp;&lt;/cpl-meta:PropertyList&gt;<br>
+            <% } %>
+            &lt;/cpl-meta:ExtensionMetadata&gt;
+          </code>
+        </td>
+        <td>
+          <% (entry.definingDocs || []).forEach(function (doc, i, arr) { %>
+            <a href="<%= doc.url %>" target="_blank">[<%= doc.name %>]</a><% if (i < arr.length - 1) { %><br><% } %>
+          <% }) %>
+        </td>
+        <td>
+          <% if (entry.contact) { %>
+            <a href="mailto:<%= entry.contact %>" target="_blank"><%= entry.contact %></a>
+          <% } %>
+        </td>
+        <td><span class="small"><em><%= entry.note %></em></span></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

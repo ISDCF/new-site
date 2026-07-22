@@ -1,0 +1,32 @@
+<table id="sorttable" class="table table-small table-hover display">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="align-text-top sort-column">#</th>
+      <th scope="col" class="align-text-top">DCNC Code<br><small>(For CTT)</small></th>
+      <th scope="col" class="align-text-top col-2">Description</th>
+      <th scope="col" class="align-text-top">ContentKind Value<br><small>(For DCP Metadata)</small></th>
+      <th scope="col" class="align-text-top">ContentKind Scope<br><small>(For DCP Metadata)</small></th>
+      <th scope="col" class="align-text-top">ContentKind Defining Document(s)</th>
+    </tr>
+  </thead>
+  <tbody id="searchTable">
+    <% data.forEach(function (entry) { %>
+      <tr id="<%= idType %>-<%= entry.dcncCode %>">
+        <td class="sort-column"><%= entry.dcncSortOrder %></td>
+        <td class="code">
+          <a class="anchor" id="<%= entry.dcncCode %>" href="#<%= entry.dcncCode %>"></a><code><%= entry.dcncCode %></code>
+        </td>
+        <td><%= entry.description %></td>
+        <td><code><%= entry.cplContentKind.value %></code></td>
+        <td class="cell-breakAll">
+          <a target="_blank" href="<%= entry.cplContentKind.scope %>"><code><%= entry.cplContentKind.scope %></code></a>
+        </td>
+        <td>
+          <% (entry.cplContentKind.definingDocs || []).forEach(function (doc, i, arr) { %>
+            <a href="<%= doc.url %>" target="_blank">[<%= doc.name %>]</a><% if (i < arr.length - 1) { %><br><% } %>
+          <% }) %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

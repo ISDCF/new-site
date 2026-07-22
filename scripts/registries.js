@@ -15,10 +15,11 @@
  *
  * Each returned route is `{ path, layout: ['registry'], data }`. Hexo's own
  * router (see node_modules/hexo/dist/hexo/index.js, createLoadThemeRoute /
- * _routerRefresh) renders `data` through themes/isdcf/layout/registry.ejs
- * and then automatically wraps the result in themes/isdcf/layout/layout.ejs
- * -- exactly the same mechanism used by hexo-generator-index/-archive for
- * normal posts/pages, so no manual view-rendering calls are needed here.
+ * _routerRefresh) renders `data` through layout/registry.ejs (registered as
+ * a theme view by scripts/site-layout.js) and then automatically wraps the
+ * result in themes/isdcf/layout/layout.ejs -- exactly the same mechanism
+ * used by hexo-generator-index/-archive for normal posts/pages, so no
+ * manual view-rendering calls are needed here.
  */
 
 const core = require('./lib/registries-core');

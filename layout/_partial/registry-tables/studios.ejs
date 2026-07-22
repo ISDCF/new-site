@@ -1,0 +1,36 @@
+<table id="sorttable" class="table table-small table-hover display">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" class="align-text-top col-1">Code</th>
+      <th scope="col" class="align-text-top col-4">Description</th>
+      <th scope="col" class="align-text-top">Contact Info</th>
+    </tr>
+  </thead>
+  <tbody id="searchTable">
+    <% data.forEach(function (entry) { %>
+      <tr id="<%= idType %>-<%= entry.code %>">
+        <td class="code">
+          <a class="anchor" id="<%= entry.code %>" href="#<%= entry.code %>"></a><code><%= entry.code %></code>
+        </td>
+        <td>
+          <span class="description"><% if (entry.url) { %><a href="<%= entry.url %>" target="_blank"><% } %><%= entry.description %><% if (entry.url) { %></a><% } %></span>
+          <% if (entry.obsolete) { %>
+            <span class="mx-3 text-bg-danger badge">Deprecated</span>
+            <% if (entry.obsoletedBy) { %>
+              <span>Replaced by:</span>
+              <% entry.obsoletedBy.forEach(function (code) { %>
+                <a class="<%= idType %>-link clear-filter" href="#<%= code %>"><%= code %></a>
+              <% }) %>
+            <% } %>
+          <% } %>
+        </td>
+        <td class="text-capitalize">
+          <% if (entry.contact) { %>
+            <span><a href="mailto:<%= entry.contact.email %>" target="_blank"><%= entry.contact.name %></a>
+            <br><%= entry.contact.address %></span>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

@@ -1,0 +1,173 @@
+<%
+  // Locals set by scripts/registries.js (see scripts/lib/registries-core.js
+  // for the full page manifest). `page` here is the Hexo Locals wrapper
+  // around the `data` object our generator returned for this route.
+  var current = page.pageTemplate;
+  var sections = page.sections || {};
+  var allPages = page.allPages || [];
+
+  // Find the pageTemplate of the menuCollapse section (if any) that
+  // contains the current page, so its sidebar sub-menu can start expanded.
+  function findOpenSection(pages, currentTemplate) {
+    var sectionName = null;
+    for (var i = 0; i < pages.length; i++) {
+      var p = pages[i];
+      if (p.pageType === 'menuCollapse') sectionName = p.pageTemplate;
+      else if (p.pageType === 'menuCollapseEnd') sectionName = null;
+      else if (p.pageTemplate === currentTemplate) return sectionName;
+    }
+    return null;
+  }
+  var openSection = findOpenSection(allPages, current);
+%>
+<div class="registry-page">
+
+  <nav aria-label="breadcrumb" class="registry-breadcrumb d-print-none">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="<%- url_for('/') %>">Home</a></li>
+      <% if (current !== 'index') { %>
+        <li class="breadcrumb-item"><a href="<%- url_for('/registry/') %>">DCNC and Metadata/Terminology Registries</a></li>
+      <% } %>
+      <% if (page.breadCrumb) { %>
+        <% page.breadCrumb.forEach(function (crumb) { %>
+          <% var landing = page.sectionLandingPage[crumb]; %>
+          <li class="breadcrumb-item"><a href="<%- url_for('/registry/' + landing + '/') %>"><%= crumb %></a></li>
+        <% }) %>
+      <% } %>
+      <li class="breadcrumb-item active" aria-current="page"><%= page.pageTitle %></li>
+    </ol>
+  </nav>
+
+  <div class="registry-layout">
+
+    <aside class="registry-sidebar d-print-none">
+      <div class="registry-pagination">
+        <% if (page.prevPage) { %>
+          <a class="registry-pagination__link" href="<%- url_for(page.routePath(page.prevPage.pageTemplate)) %>">&laquo; Previous</a>
+        <% } else { %>
+          <span></span>
+        <% } %>
+        <% if (page.nextPage) { %>
+          <a class="registry-pagination__link" href="<%- url_for(page.routePath(page.nextPage.pageTemplate)) %>">Next &raquo;</a>
+        <% } %>
+      </div>
+
+      <ul class="registry-menu list-unstyled">
+        <% allPages.forEach(function (p) { %>
+          <% if (p.menuLevel === 1 && p.pageType === 'descriptiveText') { %>
+            <li>
+              <a class="registry-menu__link<%= p.pageTemplate === current ? ' active' : '' %>" href="<%- url_for(page.routePath(p.pageTemplate)) %>"><%= p.pageTitle %></a>
+            </li>
+          <% } else if (p.menuLevel === 2 && p.pageType === 'menuCollapse') {
+               var sectionId = 'registry-menu-' + p.pageTemplate;
+               var isOpenSection = p.pageTemplate === openSection;
+          %>
+            <li class="registry-menu__section">
+              <a class="registry-menu__section-toggle<%= isOpenSection ? '' : ' collapsed' %>" href="#<%- sectionId %>" data-bs-toggle="collapse" role="button" aria-expanded="<%= isOpenSection ? 'true' : 'false' %>" aria-controls="<%- sectionId %>"><%= p.pageTitle %></a>
+              <ul class="registry-menu__sub collapse list-unstyled<%= isOpenSection ? ' show' : '' %>" id="<%- sectionId %>">
+          <% } else if (p.menuLevel === 2 && p.pageType === 'menuCollapseEnd') { %>
+              </ul>
+            </li>
+          <% } else if (p.menuLevel === 3) { %>
+                <li><a class="registry-menu__link registry-menu__link--sub<%= p.pageTemplate === current ? ' active' : '' %>" href="<%- url_for(page.routePath(p.pageTemplate)) %>"><%= p.pageTitle %></a></li>
+          <% } %>
+        <% }) %>
+      </ul>
+    </aside>
+
+    <div class="registry-main">
+
+      <div class="registry-main__header">
+        <h1 class="registry-main__title"><%= page.pageTitle %></h1>
+        <div class="registry-main__actions d-print-none">
+          <% if (page.pageType === 'registryTable') { %>
+            <a class="registry-action" target="_blank" rel="noopener" href="https://registry.isdcf.com/<%- current %>" title="JSON Feed">JSON Feed</a>
+          <% } %>
+          <a class="registry-action" href="javascript:void(0)" onclick="window.print();return false;" title="Print Page">Print Page</a>
+        </div>
+      </div>
+
+      <% if (sections.int) { %>
+        <div class="registry-section registry-section--intro post__content"><%- sections.int %></div>
+      <% } %>
+
+      <% if (sections.ov) { %>
+        <div class="registry-section registry-section--tabs row">
+          <div class="col<%= sections.spn ? '-md-8' : '' %>">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-ov" type="button" role="tab" aria-selected="true">Overview</button></li>
+              <% if (sections.ctt) { %>
+                <li class="nav-item d-print-none"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-ctt" type="button" role="tab" aria-selected="false">CTT Example</button></li>
+              <% } %>
+              <% if (sections.cpl) { %>
+                <li class="nav-item d-print-none"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-cpl" type="button" role="tab" aria-selected="false">CPL Usage</button></li>
+              <% } %>
+            </ul>
+            <div class="tab-content p-3">
+              <div class="tab-pane active post__content" id="tab-ov" role="tabpanel">
+                <%- sections.ov %>
+                <% if (sections.rls) { %>
+                  <div class="registry-rules"><%- sections.rls %></div>
+                <% } %>
+              </div>
+              <% if (sections.ctt) { %>
+                <div class="tab-pane d-print-none post__content" id="tab-ctt" role="tabpanel"><%- sections.ctt %></div>
+              <% } %>
+              <% if (sections.cpl) { %>
+                <div class="tab-pane d-print-none post__content" id="tab-cpl" role="tabpanel"><%- sections.cpl %></div>
+              <% } %>
+            </div>
+          </div>
+          <% if (sections.spn) { %>
+            <div class="col-md-4">
+              <div class="registry-sidenote post__content"><%- sections.spn %></div>
+            </div>
+          <% } %>
+        </div>
+      <% } %>
+
+      <% if (sections.lst) { %>
+        <div class="registry-section registry-section--list post__content"><%- sections.lst %></div>
+      <% } %>
+
+      <% if (page.pageType === 'registryTable') { %>
+        <div class="registry-table-wrap">
+          <%- partial('_partial/registry-tables/' + page.pageTemplate, { data: page.registryData, idType: page.idType, strip: page.strip }) %>
+        </div>
+      <% } %>
+
+      <div class="registry-pagination registry-pagination--bottom d-print-none">
+        <% if (page.prevPage) { %>
+          <a class="registry-pagination__link" href="<%- url_for(page.routePath(page.prevPage.pageTemplate)) %>">&laquo; Previous</a>
+        <% } else { %>
+          <span></span>
+        <% } %>
+        <% if (page.nextPage) { %>
+          <a class="registry-pagination__link" href="<%- url_for(page.routePath(page.nextPage.pageTemplate)) %>">Next &raquo;</a>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% if (page.pageType === 'registryTable') { %>
+<script>
+  jQuery(function ($) {
+    $('#sorttable').DataTable({
+      paging: false,
+      info: true,
+      searching: true,
+      order: [[0, 'asc']],
+      dom: "<'row pt-0'<'col-sm-6'i><'col-sm-6'f>>" +
+           "<'row'<'col-sm-12't>>"
+    });
+
+    // "Replaced by: XXX" links (facilities/studios "obsoletedBy") clear any
+    // active table search/filter before jumping to the replacement's row.
+    $(document).on('click', '.clear-filter', function () {
+      $('#sorttable').DataTable().search('').columns().search('').draw();
+    });
+  });
+</script>
+<% } %>
