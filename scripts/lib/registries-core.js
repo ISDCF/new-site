@@ -42,9 +42,9 @@ const LANGUAGE_UTILS_PATH = path.join(ROOT_DIR, 'external', 'registries', 'src',
  */
 const pages = [
   { pageType: 'menuCollapse', pageTemplate: 'namingconvention', pageTitle: 'Digital Cinema Naming Convention', menuLevel: 2 },
-  { pageType: 'descriptiveText', pageTemplate: 'dcncintro', pageTitle: 'Introduction', menuLevel: 3, pageOrder: 1 },
-  { pageType: 'descriptiveText', pageTemplate: 'general', pageTitle: 'General Tips', menuLevel: 3, pageOrder: 2 },
-  { pageType: 'descriptiveText', pageTemplate: 'illustratedguide', pageTitle: 'Illustrated Guide', menuLevel: 3, pageOrder: 3 },
+  { pageType: 'descriptiveText', pageTemplate: 'illustratedguide', pageTitle: 'Illustrated Guide', menuLevel: 3, pageOrder: 1 },
+  { pageType: 'descriptiveText', pageTemplate: 'dcncintro', pageTitle: 'Introduction', menuLevel: 3, pageOrder: 2 },
+  { pageType: 'descriptiveText', pageTemplate: 'general', pageTitle: 'General Tips', menuLevel: 3, pageOrder: 3 },
   { pageType: 'registryTable', pageTemplate: 'contenttypes', idType: 'contenttype', pageTitle: 'Content Types', schemaBuild: '1.0.0-beta.1', menuLevel: 3, pageOrder: 4 },
   { pageType: 'registryTable', pageTemplate: 'contentmodifiers', idType: 'contentmodifier', pageTitle: 'Content Modifiers', schemaBuild: '1.0.1', menuLevel: 3, pageOrder: 5 },
   { pageType: 'descriptiveText', pageTemplate: 'labeling3dproduct', pageTitle: "Labeling 3D Product", menuLevel: 3, pageOrder: 6 },

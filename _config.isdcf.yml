@@ -17,12 +17,11 @@ menu:
     Directions to Meetings: /events/logistics/
     Calendar: /events/calendar/
   Resources:
+    Digital Cinema Naming Convention: /registry/dcncintro/
+    Metadata Registry: /registry/registryintro/
+    Terminology Registry: /registry/terms/
     Technical Documents: /resources/documents/
     Expiring Certs: /resources/expiring-certs/
     SMPTE Standards: /resources/standards/
     Other Resources: /resources/other/
     Test Content: /resources/test-content/
-  DCNC and Registry:
-    Digital Cinema Naming Convention: /registry/dcncintro/
-    Metadata Registry: /registry/registryintro/
-    Terminology Registry: /registry/terms/
