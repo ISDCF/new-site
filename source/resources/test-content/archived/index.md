@@ -6,7 +6,7 @@ alias: smpte-dcp-tests/index.html
 
 ![Framing chart](/resources/test-content/archived/framing-chart-teaser.jpg)
 
-ISDCF has created framing charts and DCPs that includes these framing charts. These are described at [Framing Charts](/resources/test-content/framing-charts/).
+ISDCF has created framing charts and DCPs that includes these framing charts. These are described at {% url_for 'Framing Charts' '/resources/test-content/framing-charts/' %}.
 
 You can get single frames or DCP's of the charts for use in the theater.
 

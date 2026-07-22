@@ -1,12 +1,12 @@
 ---
-title: Agreement of Terms
+title: Terms
 layout: page
 alias: terms/index.html
 ---
 
-## Inter-Society Digital Cinema Forum (ISDCF)
+## Terms of participation
 
-ISDCF – Intersociety Digital Cinema Forum meets about once a month to discuss technical and deployment issues for Theatrical Digital Cinema deployment. We discuss DCP (Digital Cinema Package), KDM (Key Distribution Message), FLM (Facility List Management), TDL (Trusted Device List), Formatting of distribution hard disc drives, FIPS-140, DCI (Digital Cinema Initiatives), Upgrade scheduling, 3D luminance, subtitles, captions, closed captions, SMPTE specifications for digital cinema / audio and a large number of other TLA and FLA's (three letter acronyms and four letter acronyms).
+*Updated April 28, 2015*
 
 It is ISDCF policy that there be:
 
@@ -31,5 +31,3 @@ No public posting of internal discussions held in the ISDCF reflector or meeting
 No use of information obtained on this site or ISDCF to knowingly violate, infringe, or unlawfully obtain the intellectual property of another.
 
 We will not tolerate bullying or any offensive behavior that could limit participation in ISDCF. ISDCF is an open forum for all interested participants.
-
-[I understand and agree to the terms of the ISDCF website](/about/welcome/)

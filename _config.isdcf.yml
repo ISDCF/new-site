@@ -12,10 +12,9 @@ menu:
     Welcome: /about/welcome/
     Terms: /about/terms/
     Membership: /about/membership/
-  Events:
-    Meeting Notes: /events/notes/
-    Directions to Meetings: /events/logistics/
-    Calendar: /events/calendar/
+  Meetings:
+    Notes: /events/notes/
+    Directions: /events/logistics/
   Resources:
     Digital Cinema Naming Convention: /registry/dcncintro/
     Metadata Registry: /registry/registryintro/
