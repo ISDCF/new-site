@@ -114,6 +114,10 @@
       info: true,
       searching: true,
       order: [[0, 'asc']],
+      // Don't tag the sorted column's cells with sorting_1/_2/_3 -- avoids
+      // fighting DataTables' own hardcoded (non-theme-aware) highlight
+      // colors for them in css/style.css.
+      orderClasses: false,
       dom: "<'row pt-0'<'col-sm-6'i><'col-sm-6'f>>" +
            "<'row'<'col-sm-12't>>"
     });
