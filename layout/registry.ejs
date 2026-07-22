@@ -33,13 +33,15 @@
 
   <div class="registry-layout">
 
-    <aside class="registry-sidebar d-print-none">
-      <ul class="registry-menu list-unstyled">
-        <% sidebarPages.forEach(function (p) { %>
-          <li><a class="registry-menu__link<%= p.pageTemplate === current ? ' active' : '' %>" href="<%- url_for(page.routePath(p.pageTemplate)) %>"><%= p.pageTitle %></a></li>
-        <% }) %>
-      </ul>
-    </aside>
+    <% if (sidebarPages.length > 1) { %>
+      <aside class="registry-sidebar d-print-none">
+        <ul class="registry-menu list-unstyled">
+          <% sidebarPages.forEach(function (p) { %>
+            <li><a class="registry-menu__link<%= p.pageTemplate === current ? ' active' : '' %>" href="<%- url_for(page.routePath(p.pageTemplate)) %>"><%= p.pageTitle %></a></li>
+          <% }) %>
+        </ul>
+      </aside>
+    <% } %>
 
     <div class="registry-main">
 
