@@ -8,24 +8,24 @@ favico: /img/favicon_IS.svg
 
 # Top navbar links, in display order.
 menu:
-  About:
-    Welcome: /about/welcome/
-    Terms: /about/terms/
-  Intersociety:
-    About: /intersociety/about/
-    Leadership: /intersociety/leadership/
-    In Memoriam - Jerry Pierce: /intersociety/jerry-pierce/
-    Membership: /intersociety/membership/
-    Ken Mason Award: /intersociety/ken-mason-award/
-  Events:
-    Meeting Notes: /events/notes/
-    Directions to Meetings: /events/logistics/
-    Calendar: /events/calendar/
-    Cinema Systems Summit 2025: /events/cinema-systems-summit/2025/
-  Resources:
-    Technical Documents: /resources/documents/
-    Expiring Certs: /resources/expiring-certs/
-    SMPTE Standards: /resources/standards/
-    Other Resources: /resources/other/
-    Test Content: /resources/test-content/
-  DCNC and Registry: /registry/
+  # About:
+  #   Welcome: /about/welcome/
+  #   Terms: /about/terms/
+  # Intersociety:
+  #   About: /intersociety/about/
+  #   Leadership: /intersociety/leadership/
+  #   In Memoriam - Jerry Pierce: /intersociety/jerry-pierce/
+  #   Membership: /intersociety/membership/
+  #   Ken Mason Award: /intersociety/ken-mason-award/
+  # Events:
+  #   Meeting Notes: /events/notes/
+  #   Directions to Meetings: /events/logistics/
+  #   Calendar: /events/calendar/
+  #   Cinema Systems Summit 2025: /events/cinema-systems-summit/2025/
+  # Resources:
+  #   Technical Documents: /resources/documents/
+  #   Expiring Certs: /resources/expiring-certs/
+  #   SMPTE Standards: /resources/standards/
+  #   Other Resources: /resources/other/
+  #   Test Content: /resources/test-content/
+  # DCNC and Registry: /registry/

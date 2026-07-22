@@ -5,7 +5,7 @@ layout: home
 
 We regularly meet to discuss technical and deployment issues for theatrical digital cinema deployment. Digital cinema technology is our wheelhouse — DCP, KDM, FLM, TDL, drive formatting, FIPS-140, DCI, upgrade scheduling, 3D luminance, subtitles, captions, and the many other SMPTE specifications that keep digital cinema and audio running smoothly.
 
-About 40 people participate, either in person or via conference call.
+ISDCF holds meetings about every 6 weeks either hybrid (zoom and in person) or zoom only. About 40 people participate, either in person or via conference call.
 
 Meetings are open to members and guests in good standing. All attendees must be registered, and continued participation in a meeting means you agree with our [Terms](/terms/).
 

@@ -23,7 +23,7 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle<%- hasActiveDescendant(value) ? ' active' : '' %>" href="#" id="<%- id %>" role="button"
         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= key %></a>
-      <div class="dropdown-menu" aria-labelledby="<%- id %>">
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="<%- id %>">
         <% Object.keys(value).forEach(function (subKey) { %>
           <a class="dropdown-item<%- is_current(value[subKey]) ? ' active' : '' %>" href="<%- url_for(value[subKey]) %>"><%= subKey %></a>
         <% }) %>
